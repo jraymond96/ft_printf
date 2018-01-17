@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/15 16:42:11 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/17 19:18:29 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ int ft_printf(const char *format, ...)
 
 int	main()
 {
+	char	flags
+	char	*format;
+
+	ft_strcpy(format, "|%10 0s|\n")
+	printf("format : "|%10 0s|\n",")
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|%-010s|\n", "COUCOU");
+	printf("|%10 0s|\n", "COUCOU");
 /*	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
 	ft_printf("salut %0-s coucou\n", "salut");*/

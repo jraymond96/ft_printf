@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/15 13:50:23 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/17 18:39:15 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 		@(cd libft && make)
-		$(CC) $(FLAGS) $(SRCS) $(PATHLIB)libft.a
+		$(CC) $(FLAGS) $(SRCS) $(PATHLIB)libft.a -o $(NAME)
 
 %.o : %.c
 		$(CC) $(FLAGS) -o $@ -c $(SRCS)
@@ -38,6 +38,13 @@ clean :
 fclean : clean
 		@(cd libft && make fclean)
 		rm -rf $(NAME)
+
+mcc : $(OBJ)
+	@clear
+	@(cd libft && make)
+	$(CC) $(FLAGS) $(SRCS) $(PATHLIB)libft.a -o $(NAME)
+	./$(NAME)	
+
 
 re : 
 	fclean

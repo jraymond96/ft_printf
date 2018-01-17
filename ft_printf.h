@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/15 14:15:17 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/17 19:18:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
+
+# define FLAGS0 (1 << 0)
 
 typedef struct s_printf
 {

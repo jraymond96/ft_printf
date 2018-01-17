@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/14 17:44:38 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/15 17:19:37 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/17 19:18:36 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_deal_precision(char *format, t_printf *elem)
 
 int		ft_deal_size(char *format, t_printf *elem)
 {
+
 	return ();
 }
 
@@ -84,4 +85,5 @@ int		ft_deal_w_p_s(char	*format, t_printf *elem)
 				|| format[index] == 'z')
 			index = index + ft_deal_size(format[index], elem);
 	}
+	return (index);
 }

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/15 14:15:33 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/17 19:18:37 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
 	index = 0;
 	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
 	{
-		/*think about work if we have 6 and more flags and 2 identical flags*/
 		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
 				|| format[index] == '#' || format[index] == ' ')
 		{
@@ -56,7 +55,7 @@ int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
 		}
 		index++;
 	}
-	/*hear deal w p s*/
+	/*deal w p s*/
 	ft_argis_str(ap, elem);
 	return (++index);
 }
