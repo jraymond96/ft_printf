@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/17 18:39:15 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/18 11:16:58 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS =
 
 PATHLIB = libft/
 
-SRCS = analyse_format.c ft_printf.c
+SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c
 
 0BJ = $(SRCS: .c=.o)
 

@@ -1,0 +1,5 @@
+http://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions#flags
+
+(%[FLAGS][WIDTH][.precision][size]type) = conversion specification;
+
+WIDTH = largeur;

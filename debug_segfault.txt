@@ -1,0 +1,7 @@
+lldb a.out
+
+run
+
+bt
+
+desas

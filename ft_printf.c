@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/17 19:18:29 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/18 12:34:18 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int ft_printf(const char *format, ...)
 	t_printf	elem;
 
 	va_start(ap, format);
-	elem = ft_readformat(format, ap);
+	ft_init_struct(&elem);
+	ft_Deal_Flags(elem, format)
 	ft_putstr(elem.buff);
 	va_end(ap);
 	return (0);
@@ -27,14 +28,16 @@ int ft_printf(const char *format, ...)
 
 int	main()
 {
-	char	flags
-	char	*format;
+	char		*tmp;
 
-	ft_strcpy(format, "|%10 0s|\n")
-	printf("format : "|%10 0s|\n",")
+	ft_init_struct(&elem);
+	ft_strcpy(format, "|%010 20s|\n");
+	((tmp = ft_strchr(format, ' ')) && *(++tmp) == '0') ? flags |= ZERO : 0;
+	ft_Print_Binary(flags);
+	printf("format : %s\n", format);
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|%10 0s|\n", "COUCOU");
+	printf(format, "COUCOU");
 /*	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
 	ft_printf("salut %0-s coucou\n", "salut");*/
