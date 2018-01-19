@@ -6,35 +6,26 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/17 19:18:37 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:26:02 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_init_struct(t_printf *elem)
-{
-	elem->length = 0;
-	elem->i_buff = 0;
-	elem->i_flags = 0;
-	elem->width = 0;
-	elem->precision = 0;
-	elem->type = '\0';
-	ft_bzero(elem->buff, 500);
-	ft_bzero(elem->flags, 6);
-}
-
-t_printf		ft_readformat(const char *format, va_list ap)
+t_printf		ft_Read_Format(const char *format, va_list ap)
 {
 	t_printf	elem;
 	int			i;
 
 	i = -1;
-	ft_init_struct(&elem);
+	ft_bzero(&elem, sizeof(t_printf));
 	while (format[++i])
 	{
 		if (format[i] == '%')
-			i = i + ft_analyse_speconversion(&elem, &format[elem.i_buff], ap);
+		{
+			i += ft_analyse_speconversion(&elem, &format[elem.i_buff], ap);
+			ft_handle_param(&elem, ap);
+		}
 		elem.buff[elem.i_buff++] = format[i];
 	}
 	return (elem);
@@ -49,14 +40,15 @@ int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
 	{
 		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
 				|| format[index] == '#' || format[index] == ' ')
-		{
-			elem->flags[elem->i_flags] = format[index];
-			elem->i_flags++;
-		}
+			ft_deal_flags(elem, &format[index]);
+		if (format[index] == '.')
+			index = index + ft_deal_precision(elem, &format[index]);
+		if (ft_isdigit(format[index]))
+			index = index + ft_deal_width(elem, &format[index]);
+		if (ft_strchr("lhjz", format[index]))
+			index = index + ft_deal_size(elem, &format[index]);
 		index++;
 	}
-	/*deal w p s*/
-	ft_argis_str(ap, elem);
 	return (++index);
 }
 

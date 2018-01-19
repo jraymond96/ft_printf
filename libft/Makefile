@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/04 16:03:01 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/19 13:21:36 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRCS = ft_memset.c \
 				ft_lstiter.c \
 				ft_lstmap.c \
 				ft_strjoin_free.c \
-				ft_strdup_free.c
+				ft_strdup_free.c \
+				ft_atoi_firstnbr.c
 
 OBJ = $(SRCS:.c=.o)
 

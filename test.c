@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/19 22:10:32 by jraymond         ###   ########.fr       */
+/*   Created: 2018/01/18 18:03:04 by jraymond          #+#    #+#             */
+/*   Updated: 2018/01/18 20:28:54 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
-#include "ft_printf.h"
+#include "libft/libft.h"
 
-int ft_printf(const char *format, ...)
+int	ft_Atoi_Printf(const char *str);
+
+int	main(int argc, char ** argv)
 {
-	va_list		ap;
-	t_printf	elem;
-
-	va_start(ap, format);
-	elem = ft_Read_Format(format, ap);
-	ft_putstr(elem.buff);
-	va_end(ap);
+	if (argc != 2)
+		return (0);
+	ft_putnbr(ft_Atoi_Printf(argv[1]));
 	return (0);
 }
 
-int	main()
-{
-	ft_putendl("result printf :");
-	ft_putchar('\n');
-	printf("|%.3 18s|\n", "blabla");
-	ft_putendl("result ft_printf :");
-	ft_putchar('\n');
-	ft_printf("|%18s|\n", "blabla");
-	return (0);
-}
