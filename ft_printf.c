@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/19 22:10:32 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/20 09:48:16 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main()
 {
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|%.3 18s|\n", "blabla");
+	printf("|%. 18s|\n", "blabla");
 	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
 	ft_printf("|%18s|\n", "blabla");

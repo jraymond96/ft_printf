@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:01:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/19 15:38:19 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/20 19:19:15 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		ft_deal_precision(t_printf *elem, const char *format)
 
 	i = 0;
 	res = 0;
+	elem->flags |= PRECI;
 	while (!ft_isdigit(format[i]) && format[i])
 		i++;
 	while (ft_isdigit(format[i]) && format[i])
