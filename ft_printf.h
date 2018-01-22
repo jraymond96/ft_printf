@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/20 19:15:58 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/22 12:02:10 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_printf
 
 int			ft_printf(const char *format, ...);
 t_printf	ft_Read_Format(const char *format, va_list ap);
-int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap);
 char		ft_char_is_type(char c);
 void		ft_argis_str(va_list ap, t_printf *elem);
 int			ft_Print_Binary(char binary);

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/20 23:08:13 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/23 00:11:51 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,56 +31,85 @@ int		ft_howchar_add(t_printf *elem, char *str)
 	length = elem->width;
 	res = ft_strlen(str);
 	if (!(elem->flags & PRECI))
-		return (0);
+	{
+		if ((res = length - res) < 0)
+			return (0);
+		else
+			return (res);
+	}
 	if (elem->flags & PRECI && elem->precision < res)
 		res = (elem->precision < length) ? length - elem->precision : 0;
 	else
 		res = (res > length) ? 0 : length - res;
 	return (res);
 }
-/*
+
 void	ft_param_string(t_printf *elem, va_list ap)
 {
 	int		length;
-	int		res;
 	char	*str;
+	int		len;
 
-	str = va_arg(ap, char*);	
-	length = ft_strlen(str);
+	str = va_arg(ap, char*);
+	length = ft_howchar_add(elem, str);
+	len = ft_strlen(str);
 	(elem->flags & ZERO && elem->flags & MINUS) ? elem->flags ^= ZERO : 0;
 	if (elem->flags & PRECI)
 	{
-		elem->i_buff = ft_strjoinn_addn_char(&buff[elem->buff], str, '0', )
-		res = length - elem->precision;
-		if (elem->flags & ZERO)
+		if (elem->flags & MINUS)
 		{
-			ft_memset(&elem->buff[elem->i_buff], '0', (elem->width - res));
-			elem->i_buff += elem->width - res;
-			ft_memcpy(&elem->buff[elem->i_buff], str, elem->precision);
+			ft_putstr("TqTq\n");
+			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
+			elem->i_buff += (elem->precision > len) ? len : elem->precision;
+			ft_memset(&elem->buff[elem->i_buff], ' ', length);
 		}
-		else if (!(elem->flags & ZERO) && !(elem->flags & MINUS))
+		else if (elem->flags & ZERO)
 		{
-			ft_memset(&elem->buff[elem->i_buff], ' ', (elem->width - res));
-			elem->i_buff += elem->width - res;
-			ft_memcpy(&elem->buff[elem->i_buff], str, elem->precision);
+			ft_putstr("TATA\n");
+			ft_memset(&elem->buff[elem->i_buff], '0', length);
+			elem->i_buff += length;
+			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
 		}
-		else if (elem->flags & MINUS)
+		else
 		{
-			ft_memcpy(&elem->buff[elem->i_buff], str, elem->precision);
-			elem->i_buff += elem->precision;
-			ft_memset(&elem->buff[elem->i_buff], ' ', (elem->width - res));
+			ft_putstr("TuTu\n");
+			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
+			elem->i_buff += (elem->precision > len) ? len : elem->precision;
+			ft_memset(&elem->buff[elem->i_buff], ' ', length);
 		}
+		elem->i_buff += elem->precision;
+	}
+	else
+	{
+		if (elem->flags & MINUS)
+		{
+			ft_putstr("TeTe\n");
+			ft_strcpy(&elem->buff[elem->i_buff], str);
+			printf("i_buff %d\n", elem->i_buff);
+			elem->i_buff += len;
+			printf("length %d\n", length);
+			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+		}
+		else if (elem->flags & ZERO)
+		{
+			ft_putstr("TdTd\n");
+			ft_memset(&elem->buff[elem->i_buff], '0', length);
+			elem->i_buff += length;
+			ft_strcpy(&elem->buff[elem->i_buff], str);
+		}
+	  	else
+		{
+			ft_putstr("TvTv\n");
+			ft_strcpy(&elem->buff[elem->i_buff], str);
+			elem->i_buff += len;
+			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+		}
+		elem->i_buff += (length + len);
 	}
 }
-*/
+
 void	ft_handle_param(t_printf *elem, va_list ap)
 {
-	char *str;
-
-	int	i;
-	str = va_arg(ap, char*);	
 	if (elem->type == 's')
-		i = ft_howchar_add(elem, str);
-	ft_putnbr(i);
-		/*ft_param_string(elem, ap);*/
+		ft_param_string(elem, ap);
 }

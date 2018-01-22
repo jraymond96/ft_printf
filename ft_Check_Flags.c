@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 12:01:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/20 19:19:15 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/22 23:38:50 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_deal_precision(t_printf *elem, const char *format)
 	i = 0;
 	res = 0;
 	elem->flags |= PRECI;
-	while (!ft_isdigit(format[i]) && format[i])
+	while (format[i] == '.' && format[i])
 		i++;
 	while (ft_isdigit(format[i]) && format[i])
 	{
@@ -52,20 +52,20 @@ int		ft_deal_width(t_printf *elem, const char *format)
 
 	i = 0;
 	res = 0;
-	while (ft_isdigit(format[i]))
+	while (ft_isdigit(format[i]) && format[i])
 	{
 		res = res * 10 + (format[i] - '0');
 		i++;
 	}
 	elem->width = res;
-	return (--i);
+	return (i);
 }
 
 int		ft_deal_size(t_printf *elem, const char *format)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (*format == 'h')
 	{
 		if (*(format + 1) == 'h')

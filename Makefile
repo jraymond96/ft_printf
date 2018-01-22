@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/19 18:15:31 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/22 23:37:35 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,32 +22,32 @@ PATHLIB = libft/
 
 SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c ft_Check_Flags.c ft_handle_param.c
 
-0BJ = $(SRCS: .c=.o)
+0BJ = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-		@(cd libft && make)
-		$(CC) $(FLAGS) $(SRCS) $(PATHLIB)libft.a -o $(NAME)
+		make -C libft
+		$(CC) $(FLAGS) libft/libft.a $(SRCS)
 
 %.o : %.c
-		$(CC) $(FLAGS) -o $@ -c $(SRCS)
+		$(CC) $(FLAGS) -o $@ -c $^
 
 clean :
-		@(cd libft make clean)
+		make -C libft clean
 		rm -rf $(OBJ)
 
 fclean : clean
-		@(cd libft && make fclean)
+		make -C libft fclean
 		rm -rf $(NAME)
 
 mcc : $(OBJ) $(HEADER)
 	@clear
-	@(cd libft && make)
-	$(CC) $(FLAGS) $(SRCS) $(PATHLIB)libft.a -o $(NAME)
-	./$(NAME)	
+	make -C libft
+	$(CC) $(FLAGS) libft/libft.a $(SRCS)
+	./a.out
 
 
 re : 
-	fclean
-	make re
+	make fclean
+	make

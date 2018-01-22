@@ -6,11 +6,36 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/19 18:26:02 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/22 23:59:24 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
+{
+	int		index;
+
+	index = 0;
+	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
+	{
+		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
+				|| format[index] == '#' || format[index] == ' ')
+		{
+			ft_deal_flags(elem, &format[index]);
+			index++;
+		}
+		else if (format[index] == '.')
+			index = index + ft_deal_precision(elem, &format[index]);
+		else if (ft_isdigit(format[index]))
+			index = index + ft_deal_width(elem, &format[index]);
+		else if (ft_strchr("lhjz", format[index]))
+			index = index + ft_deal_size(elem, &format[index]);
+		else
+			index++;
+	}
+	return (++index);
+}
 
 t_printf		ft_Read_Format(const char *format, va_list ap)
 {
@@ -23,33 +48,12 @@ t_printf		ft_Read_Format(const char *format, va_list ap)
 	{
 		if (format[i] == '%')
 		{
-			i += ft_analyse_speconversion(&elem, &format[elem.i_buff], ap);
+			i += ft_analyse_speconversion(&elem, &format[i], ap);
 			ft_handle_param(&elem, ap);
 		}
 		elem.buff[elem.i_buff++] = format[i];
 	}
 	return (elem);
-}
-
-int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
-{
-	int		index;
-
-	index = 0;
-	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
-	{
-		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
-				|| format[index] == '#' || format[index] == ' ')
-			ft_deal_flags(elem, &format[index]);
-		if (format[index] == '.')
-			index = index + ft_deal_precision(elem, &format[index]);
-		if (ft_isdigit(format[index]))
-			index = index + ft_deal_width(elem, &format[index]);
-		if (ft_strchr("lhjz", format[index]))
-			index = index + ft_deal_size(elem, &format[index]);
-		index++;
-	}
-	return (++index);
 }
 
 char		ft_char_is_type(char c)
