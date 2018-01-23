@@ -6,12 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/23 15:35:06 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/23 20:53:46 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "ft_printf.h"
+#include <locale.h>
 
 int ft_printf(const char *format, ...)
 {
@@ -29,7 +30,8 @@ int	main()
 {
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|%0-15.3s|\n", "blabla");
+	setlocale(LC_ALL, "");
+	printf("|%C|\n", 233);
 	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
 	ft_printf("|%0-15.3s|\n", "blabla");
