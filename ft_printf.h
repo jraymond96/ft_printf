@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/22 12:02:10 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/23 14:47:56 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@
 /*
  ** -----------------------------
  */
+
+# define NWEL ft_putchar
+# define AFF ft_putstr
 
 typedef struct s_printf
 {

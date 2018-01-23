@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/23 00:07:16 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:35:06 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main()
 {
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|%0-15s|\n", "blabla");
+	printf("|%0-15.3s|\n", "blabla");
 	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
-	ft_printf("|%0-15s|\n", "blabla");
+	ft_printf("|%0-15.3s|\n", "blabla");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/23 00:11:51 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:27:36 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_param_string(t_printf *elem, va_list ap)
 			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
 			elem->i_buff += (elem->precision > len) ? len : elem->precision;
 			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+			elem->i_buff += length;
 		}
 		else if (elem->flags & ZERO)
 		{
@@ -69,15 +70,16 @@ void	ft_param_string(t_printf *elem, va_list ap)
 			ft_memset(&elem->buff[elem->i_buff], '0', length);
 			elem->i_buff += length;
 			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
+			elem->i_buff += (elem->precision > len) ? len : elem->precision;
 		}
 		else
 		{
 			ft_putstr("TuTu\n");
-			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
+			ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
 			elem->i_buff += (elem->precision > len) ? len : elem->precision;
 			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+			elem->i_buff += length;
 		}
-		elem->i_buff += elem->precision;
 	}
 	else
 	{
@@ -85,10 +87,9 @@ void	ft_param_string(t_printf *elem, va_list ap)
 		{
 			ft_putstr("TeTe\n");
 			ft_strcpy(&elem->buff[elem->i_buff], str);
-			printf("i_buff %d\n", elem->i_buff);
 			elem->i_buff += len;
-			printf("length %d\n", length);
 			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+			elem->i_buff += length;
 		}
 		else if (elem->flags & ZERO)
 		{
@@ -96,6 +97,7 @@ void	ft_param_string(t_printf *elem, va_list ap)
 			ft_memset(&elem->buff[elem->i_buff], '0', length);
 			elem->i_buff += length;
 			ft_strcpy(&elem->buff[elem->i_buff], str);
+			elem->i_buff += len;
 		}
 	  	else
 		{
@@ -103,8 +105,8 @@ void	ft_param_string(t_printf *elem, va_list ap)
 			ft_strcpy(&elem->buff[elem->i_buff], str);
 			elem->i_buff += len;
 			ft_memset(&elem->buff[elem->i_buff], ' ', length);
+			elem->i_buff += length;
 		}
-		elem->i_buff += (length + len);
 	}
 }
 
