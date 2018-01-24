@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:03:04 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/24 17:25:36 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/24 19:18:05 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ int		main()
 	char	str[5];
 
 	setlocale(LC_ALL, "");
-	unicode = 0xdfffff;
+	unicode = 178;;
 	ft_bzero(str, 5);
-	if (unicode >= 0 && unicode <= 127)
+	if ((unicode >= 0 && unicode <= 127) || (unicode <= 255 && MB_CUR_MAX == 1))
 		str[0] = unicode;
-	else if (unicode >= 128 && unicode <= 2047)
+	else if ((unicode >= 128 && unicode <= 2047) && MB_CUR_MAX > 1)
 	{
 		str[0] = (unicode >> 6) | 192;
 		str[1] = (unicode & 63) | (1 << 7);
 	}
-	else if ((unicode >= 2048 && unicode <= 55295) || 
-				(unicode >= 57344 && unicode <= 65535))
+	else if (((unicode >= 2048 && unicode <= 55295) || 
+				(unicode >= 57344 && unicode <= 65535)) && MB_CUR_MAX > 1)
 	{
 		str[0] = (unicode >> 12) | 224;
 		str[1] = ((unicode >> 6) & 63) | (1 << 7);
 		str[2] = (unicode & 63) | (1 << 7);
 	}
-	else if (unicode >= 65536 && unicode <= 1114111)
+	else if ((unicode >= 65536 && unicode <= 1114111) && MB_CUR_MAX > 1)
 	{
 		str[0] = (unicode >> 18) | 240;
 		str[1] = ((unicode >> 12) & 63) | (1 << 7);
