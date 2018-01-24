@@ -5,7 +5,6 @@ http://docs.microsoft.com/fr-fr/cpp/c-runtime-library/format-specification-synta
 WIDTH = largeur;
 
 
-
 savoir si l utilisateur a fais setlocale si non return (0);
 
 setlocale();
