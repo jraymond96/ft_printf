@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/26 17:21:27 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/26 20:30:14 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ int	main()
 {
 	ft_putendl("result printf :");
 	ft_putchar('\n');
-	printf("|coucou %C|\n", L'ᆁ');
+	setlocale(LC_ALL, "");
+	printf("|%7S|\n", L"ਉਢ");
 	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
-	ft_printf("|%10.3|\n", "salut");
+	ft_printf("|%0-10s|\n", "salut");
 	return (0);
 }

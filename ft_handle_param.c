@@ -6,13 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/26 17:15:48 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/26 20:32:33 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_howchar_add(t_printf *elem, char *str, int len)
+int		ft_howchar_add(t_printf *elem, int len)
 {
 	int	length;
 
@@ -80,7 +80,7 @@ void	ft_param_string(t_printf *elem, va_list ap)
 	if (elem->type == 'S')
 		;
 	str = va_arg(ap, char*);
-	nb_c_add = ft_howchar_add(elem, str, ft_strlen(str));
+	nb_c_add = ft_howchar_add(elem, ft_strlen(str));
 	(elem->flags & ZERO && elem->flags & MINUS) ? elem->flags ^= ZERO : 0;
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
 		ft_addstr_no_minus(elem, (char *)str, nb_c_add);
