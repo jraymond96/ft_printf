@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/22 23:37:35 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/26 14:58:06 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 CC = gcc
 
-FLAGS =
+FLAGS = 
 
 HEADER = ft_printf.h
 

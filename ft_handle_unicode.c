@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_handle_unicode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/26 17:21:27 by jraymond         ###   ########.fr       */
+/*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
+/*   Updated: 2018/01/26 17:18:49 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include "ft_printf.h"
-#include <locale.h>
 
-int ft_printf(const char *format, ...)
+int		ft_unicodelen(wchar_t unicode)
 {
-	va_list		ap;
-	t_printf	elem;
-
-	va_start(ap, format);
-	elem = ft_Read_Format(format, ap);
-	ft_putstr(elem.buff);
-	va_end(ap);
-	return (0);
+	if (unicode <= 127 && unciode >= 0)
 }
 
-int	main()
+void	ft_handle_unciode(t_printf *elem, va_list ap)
 {
-	ft_putendl("result printf :");
-	ft_putchar('\n');
-	printf("|coucou %C|\n", L'ᆁ');
-	ft_putendl("result ft_printf :");
-	ft_putchar('\n');
-	ft_printf("|%10.3|\n", "salut");
-	return (0);
+	wchar_t *unicode;
+	char	str[5];
+
+	ft_bzero(str, 5);
+	unicode = va_arg(ap, wchar_t*);
 }

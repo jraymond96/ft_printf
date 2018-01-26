@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:03:04 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/26 15:48:58 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/26 15:33:05 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 #include <wctype.h>
 #include <locale.h>
 
-char	*unicode_to_str_utf8(wchar_t unicode, char *str)
+int		main()
 {
+	wchar_t	unicode;
+	char	str[5];
+
+	setlocale(LC_ALL, "");
+	unicode = 178;;
+	ft_bzero(str, 5);
 	if ((unicode > 55295 && unicode < 57344) || unicode > 1114111 ||
 			(unicode > 255 && MB_CUR_MAX <= 1))
 		return (NULL);
@@ -33,12 +39,16 @@ char	*unicode_to_str_utf8(wchar_t unicode, char *str)
 		str[1] = ((unicode >> 6) & 63) | (1 << 7);
 		str[2] = (unicode & 63) | (1 << 7);
 	}
-	else
+	else if ((unicode >= 65536 && unicode <= 1114111) && MB_CUR_MAX > 1)
 	{
 		str[0] = (unicode >> 18) | 240;
 		str[1] = ((unicode >> 12) & 63) | (1 << 7);
 		str[2] = ((unicode >> 6) & 63) | (1 << 7);
 		str[3] = (unicode & 63) | (1 << 7);
 	}
-	return (str);
+	else
+		return (-1);
+	write(1, str, MB_CUR_MAX);
+	return (0);
 }
+

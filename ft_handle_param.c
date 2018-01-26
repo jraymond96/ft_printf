@@ -6,112 +6,90 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/23 15:27:36 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:15:48 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_strjoinn_addn_char(char *dest, char *src, char c, int nchar, int n)
+int		ft_howchar_add(t_printf *elem, char *str, int len)
 {
-	int	i;
-
-	i = nchar;
-	i += n;
-	ft_memset(dest, c, nchar);
-	ft_strncpy(&dest[nchar], src, n);
-	return (++i);
-}
-
-int		ft_howchar_add(t_printf *elem, char *str)
-{
-	int	res;
 	int	length;
 
 	length = elem->width;
-	res = ft_strlen(str);
 	if (!(elem->flags & PRECI))
 	{
-		if ((res = length - res) < 0)
+		if ((len = length - len) < 0)
 			return (0);
 		else
-			return (res);
+			return (len);
 	}
-	if (elem->flags & PRECI && elem->precision < res)
-		res = (elem->precision < length) ? length - elem->precision : 0;
+	if (elem->flags & PRECI && elem->precision < len)
+		len = (elem->precision < length) ? length - elem->precision : 0;
 	else
-		res = (res > length) ? 0 : length - res;
-	return (res);
+		len = (len > length) ? 0 : length - len;
+	return (len);
+}
+
+void	ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (elem->flags & ZERO)
+		ft_memset(&elem->buff[elem->i_buff], '0', nb_c_add);
+	else
+		ft_memset(&elem->buff[elem->i_buff], ' ', nb_c_add);
+	elem->i_buff += nb_c_add;
+	if (elem->flags & PRECI)
+	{
+		ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
+		elem->i_buff += (elem->precision > len) ? len : elem->precision;
+	}
+	else
+	{
+		ft_strcpy(&elem->buff[elem->i_buff], str);
+		elem->i_buff += len;
+	}
+}
+
+void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (elem->flags & PRECI)
+	{
+		ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
+		elem->i_buff += (elem->precision > len) ? len : elem->precision;
+	}
+	else
+	{
+		ft_strcpy(&elem->buff[elem->i_buff], str);
+		elem->i_buff += len;
+	}
+	ft_memset(&elem->buff[elem->i_buff], ' ', nb_c_add);
+	elem->i_buff += nb_c_add;
 }
 
 void	ft_param_string(t_printf *elem, va_list ap)
 {
-	int		length;
+	int		nb_c_add;
 	char	*str;
-	int		len;
 
+	if (elem->type == 'S')
+		;
 	str = va_arg(ap, char*);
-	length = ft_howchar_add(elem, str);
-	len = ft_strlen(str);
+	nb_c_add = ft_howchar_add(elem, str, ft_strlen(str));
 	(elem->flags & ZERO && elem->flags & MINUS) ? elem->flags ^= ZERO : 0;
-	if (elem->flags & PRECI)
-	{
-		if (elem->flags & MINUS)
-		{
-			ft_putstr("TqTq\n");
-			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
-			elem->i_buff += (elem->precision > len) ? len : elem->precision;
-			ft_memset(&elem->buff[elem->i_buff], ' ', length);
-			elem->i_buff += length;
-		}
-		else if (elem->flags & ZERO)
-		{
-			ft_putstr("TATA\n");
-			ft_memset(&elem->buff[elem->i_buff], '0', length);
-			elem->i_buff += length;
-			ft_strncpy(&elem->buff[elem->i_buff], str, elem->precision);
-			elem->i_buff += (elem->precision > len) ? len : elem->precision;
-		}
-		else
-		{
-			ft_putstr("TuTu\n");
-			ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
-			elem->i_buff += (elem->precision > len) ? len : elem->precision;
-			ft_memset(&elem->buff[elem->i_buff], ' ', length);
-			elem->i_buff += length;
-		}
-	}
+	if (elem->flags & ZERO || !(elem->flags & MINUS))
+		ft_addstr_no_minus(elem, (char *)str, nb_c_add);
 	else
-	{
-		if (elem->flags & MINUS)
-		{
-			ft_putstr("TeTe\n");
-			ft_strcpy(&elem->buff[elem->i_buff], str);
-			elem->i_buff += len;
-			ft_memset(&elem->buff[elem->i_buff], ' ', length);
-			elem->i_buff += length;
-		}
-		else if (elem->flags & ZERO)
-		{
-			ft_putstr("TdTd\n");
-			ft_memset(&elem->buff[elem->i_buff], '0', length);
-			elem->i_buff += length;
-			ft_strcpy(&elem->buff[elem->i_buff], str);
-			elem->i_buff += len;
-		}
-	  	else
-		{
-			ft_putstr("TvTv\n");
-			ft_strcpy(&elem->buff[elem->i_buff], str);
-			elem->i_buff += len;
-			ft_memset(&elem->buff[elem->i_buff], ' ', length);
-			elem->i_buff += length;
-		}
-	}
+		ft_addstr_with_minus(elem, str, nb_c_add);
 }
 
 void	ft_handle_param(t_printf *elem, va_list ap)
 {
-	if (elem->type == 's')
+	if (elem->type == 's' || elem->type == 'S')
 		ft_param_string(elem, ap);
 }

@@ -6,13 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/24 17:26:22 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/26 14:57:03 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
+int			ft_analyse_speconversion(t_printf *elem, const char *format)
 {
 	int		index;
 
@@ -48,7 +48,7 @@ t_printf		ft_Read_Format(const char *format, va_list ap)
 	{
 		if (format[i] == '%')
 		{
-			i += ft_analyse_speconversion(&elem, &format[i], ap);
+			i += ft_analyse_speconversion(&elem, &format[i]);
 			ft_handle_param(&elem, ap);
 		}
 		elem.buff[elem.i_buff++] = format[i];
