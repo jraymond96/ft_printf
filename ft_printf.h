@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/24 16:33:00 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/27 18:11:48 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,11 @@ int			ft_deal_precision(t_printf *elem, const char *format);
 int			ft_deal_width(t_printf *elem, const char *format);
 int			ft_deal_size(t_printf *elem, const char *format);
 void		ft_handle_param(t_printf *elem, va_list ap);
+void		ft_handle_unicode(t_printf *elem, va_list ap);
+void		unicode_to_str(wchar_t unicode, char *str);
+int			ft_howchar_add(t_printf *elem, int len);
+void		unicode_to_str(wchar_t unicode, char *str);
+void		ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add);
+void		ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add);
 
 #endif

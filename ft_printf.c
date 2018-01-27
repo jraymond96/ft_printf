@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/26 20:30:14 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/27 18:12:55 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,22 @@ int ft_printf(const char *format, ...)
 
 int	main()
 {
+	wchar_t s[5];
+
+	s[0] = 0xf8ff;
+	s[1] = 0xfdf0;
+	s[2] = 0x1d11e;
+	s[3] = ' ';
+	s[4] = '\0';
 	ft_putendl("result printf :");
 	ft_putchar('\n');
 	setlocale(LC_ALL, "");
-	printf("|%7S|\n", L"ਉਢ");
+	ft_putnbr(printf("|%30S|\n", s));
+	ft_putchar('\n');
+	/*printf("|%.10d|\n", 123);
+	printf("|%20.5d|\n", 123);*/
 	ft_putendl("result ft_printf :");
 	ft_putchar('\n');
-	ft_printf("|%0-10s|\n", "salut");
+	ft_printf("|%30S|\n", s);
 	return (0);
 }

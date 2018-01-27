@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/26 20:34:15 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/27 17:58:40 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADER = ft_printf.h
 
 PATHLIB = libft/
 
-SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c ft_Check_Flags.c ft_handle_param.c
+SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c ft_Check_Flags.c ft_handle_param.c ft_handle_unicode.c test.c
 
 0BJ = $(SRCS:.c=.o)
 
