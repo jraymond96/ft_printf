@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/27 19:00:15 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/27 22:38:51 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,24 @@ int		ft_unicodelen(wchar_t unicode)
 int		ft_howunicode_print(t_printf *elem, wchar_t *unicode, int *nb)
 {
 	int	i;
+	int	res;
+
 
 	i = 0;
-	*nb = ft_unicodelen(unicode[i]);
-	if (!(elem->flags & PRECI))
+	res = ft_unicodelen(unicode[i]);
+	while (unicode[i])
 	{
-		while (unicode[++i])
-			;
-		return (i);
-	}
-	while (unicode[i++])
-	{
-		if (*nb >= elem->precision)
+		if (elem->flags & PRECI && *nb >= elem->precision)
 			break;
-		printf("nb : %d\n", )
-		*nb += ft_unicodelen(unicode[i]);
+		if ((res = ft_unicodelen(unicode[i])) == -1)
+			return (-1);
+		*nb += res;
+		i++;
 	}
-	if (*nb > elem->precision)
-	{
+	if (elem->flags & PRECI && *nb > elem->precision)
 		*nb -= ft_unicodelen(unicode[--i]);
-		return (i);
-	}
 	return (i);
 }
-
-
 
 void	ft_handle_unicode(t_printf *elem, va_list ap)
 {
@@ -69,10 +62,8 @@ void	ft_handle_unicode(t_printf *elem, va_list ap)
 	unicode = va_arg(ap, wchar_t*);
 	ft_bzero(str, 5);
 	nbuni_print = ft_howunicode_print(elem, unicode, &nb);
-	printf("nb = %d\n", nb);
 	nb = ft_howchar_add(elem, nb);
-	printf("nb = %d\n", nb);
-	if ((elem->flags & ZERO ||!(elem->flags & MINUS)) && nb)
+	if ((elem->flags & ZERO || !(elem->flags & MINUS)) && nb)
 		ft_addstr_no_minus(elem, str, nb);
 	while (i < nbuni_print)
 	{
