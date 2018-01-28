@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/27 17:21:46 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:46:53 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_printf		ft_Read_Format(const char *format, va_list ap)
 			i += ft_analyse_speconversion(&elem, &format[i]);
 			ft_handle_param(&elem, ap);
 		}
-		elem.buff[elem.i_buff++] = format[i];
+		ft_handle_overflow(&elem, &format[i], 1, 1);
 	}
 	return (elem);
 }

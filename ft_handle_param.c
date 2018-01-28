@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/27 22:35:26 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/28 18:42:21 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int		ft_howchar_add(t_printf *elem, int len)
 
 void	ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add)
 {
-	int	len;
+	int		len;
+	char	c;
 
+	c = '0';
 	len = ft_strlen(str);
 	if (elem->flags & ZERO)
 		ft_memset(&elem->buff[elem->i_buff], '0', nb_c_add);
@@ -55,21 +57,16 @@ void	ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add)
 
 void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
 {
-	int	len;
+	int		len;
+	char	c;
 
+	c = ' ';
 	len = ft_strlen(str);
 	if (elem->flags & PRECI)
-	{
-		ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
-		elem->i_buff += (elem->precision > len) ? len : elem->precision;
-	}
+		ft_handle_overflow(elem, str, elem->precision, 2);
 	else
-	{
-		ft_strcpy(&elem->buff[elem->i_buff], str);
-		elem->i_buff += len;
-	}
-	ft_memset(&elem->buff[elem->i_buff], ' ', nb_c_add);
-	elem->i_buff += nb_c_add;
+		ft_handle_overflow(elem, str, len, 2);
+	ft_handle_overflow(elem, &c, nb_c_add, 1);
 }
 
 void	ft_param_string(t_printf *elem, va_list ap)

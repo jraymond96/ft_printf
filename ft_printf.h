@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/27 18:11:48 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:04:24 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include "./libft/libft.h"
+
+# define BUFF_SIZE 1
 
 /*
 ** ----------MASK-FLAGS----------
@@ -49,7 +51,7 @@
 
 typedef struct s_printf
 {
-	char	buff[500];
+	char	buff[BUFF_SIZE + 1];
 	int		length;
 	int		i_buff;
 	char	flags;
@@ -76,5 +78,6 @@ int			ft_howchar_add(t_printf *elem, int len);
 void		unicode_to_str(wchar_t unicode, char *str);
 void		ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add);
 void		ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add);
+void		ft_handle_overflow(t_printf *elem, void *data, int nb, int spe);
 
 #endif
