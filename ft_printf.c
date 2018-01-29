@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 18:57:05 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 23:00:23 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_printf(const char *format, ...)
 
 	ft_bzero(&elem, sizeof(t_printf));
 	va_start(ap, format);
-	if (ft_Read_Format(format, ap, &elem) == -1)
+	if (ft_read_format(format, ap, &elem) == -1)
 		return (-1);
 	ft_putstr(elem.buff);
 	va_end(ap);
@@ -37,7 +37,7 @@ int	main()
 
 	s[0] = 0xf8ff;
 	s[1] = 0xfdf0;
-	s[2] = 0xd800;
+	s[2] = 0xfdf0;
 	s[3] = ' ';
 	s[4] = '\0';
 	ft_putendl("result printf :");

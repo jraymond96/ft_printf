@@ -6,15 +6,15 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 19:05:16 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:43:08 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_analyse_speconversion(t_printf *elem, const char *format)
+int		ft_analyse_speconversion(t_printf *elem, const char *format)
 {
-	int		index;
+	int	index;
 
 	index = 0;
 	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
@@ -37,9 +37,9 @@ int			ft_analyse_speconversion(t_printf *elem, const char *format)
 	return (++index);
 }
 
-int		ft_Read_Format(const char *format, va_list ap, t_printf *elem)
+int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 {
-	int			i;
+	int	i;
 
 	i = -1;
 	while (format[++i])
@@ -55,7 +55,7 @@ int		ft_Read_Format(const char *format, va_list ap, t_printf *elem)
 	return (0);
 }
 
-char		ft_char_is_type(char c)
+char	ft_char_is_type(char c)
 {
 	if (c == 's' || c == 'S')
 		return (c);

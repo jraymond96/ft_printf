@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_Print_Binary.c                                  :+:      :+:    :+:   */
+/*   ft_print_binary.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 10:52:35 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/24 10:01:23 by jraymond         ###   ########.fr       */
+/*   Created: 2018/01/29 21:47:11 by jraymond          #+#    #+#             */
+/*   Updated: 2018/01/29 21:49:17 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putnbr(int n);
-void	ft_putchar(char c);
+#include "libft/libft.h"
 
 #define CHAR (1 << i)
 
-int		ft_Print_Binary(char binary)
+int		ft_print_binary(char binary)
 {
 	int	i;
 
