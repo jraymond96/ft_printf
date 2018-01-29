@@ -6,7 +6,7 @@
 #    By: jraymond <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:06:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/28 20:44:10 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/29 18:43:44 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME = libftprintf.a
 
 CC = gcc
 
-FLAGS = -fsanitize=address
+FLAGS =
 
 HEADER = ft_printf.h
 
 PATHLIB = libft/
 
-SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c ft_Check_Flags.c ft_handle_param.c ft_handle_unicode.c test.c ft_handle_overflow.c
+SRCS = analyse_format.c ft_printf.c ft_Print_Binary.c ft_Check_Flags.c ft_handle_param.c ft_handle_unicode.c test.c ft_handle_overflow.c ft_param_char.c
 
 0BJ = $(SRCS:.c=.o)
 
@@ -46,7 +46,6 @@ mcc : $(OBJ) $(HEADER)
 	make -C libft
 	$(CC) $(FLAGS) libft/libft.a $(SRCS)
 	./a.out
-
 
 re : 
 	make fclean

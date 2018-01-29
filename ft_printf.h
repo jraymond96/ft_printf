@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/28 22:04:24 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 19:04:47 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include "./libft/libft.h"
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 128
 
 /*
 ** ----------MASK-FLAGS----------
@@ -49,9 +49,17 @@
  ** -----------------------------
  */
 
+typedef struct s_overflow
+{
+	int			i;
+	char		*data_b;
+	int			flag;
+}				t_overflow;
+
 typedef struct s_printf
 {
 	char	buff[BUFF_SIZE + 1];
+	int		ret;
 	int		length;
 	int		i_buff;
 	char	flags;
@@ -62,7 +70,7 @@ typedef struct s_printf
 }				t_printf;
 
 int			ft_printf(const char *format, ...);
-t_printf	ft_Read_Format(const char *format, va_list ap);
+int			ft_Read_Format(const char *format, va_list ap, t_printf *elem);
 char		ft_char_is_type(char c);
 void		ft_argis_str(va_list ap, t_printf *elem);
 int			ft_Print_Binary(char binary);
@@ -71,13 +79,14 @@ void		ft_deal_flags(t_printf *elem, const char *format);
 int			ft_deal_precision(t_printf *elem, const char *format);
 int			ft_deal_width(t_printf *elem, const char *format);
 int			ft_deal_size(t_printf *elem, const char *format);
-void		ft_handle_param(t_printf *elem, va_list ap);
-void		ft_handle_unicode(t_printf *elem, va_list ap);
+int			ft_handle_param(t_printf *elem, va_list ap);
+int			ft_handle_unicode(t_printf *elem, va_list ap);
 void		unicode_to_str(wchar_t unicode, char *str);
 int			ft_howchar_add(t_printf *elem, int len);
-void		unicode_to_str(wchar_t unicode, char *str);
 void		ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add);
 void		ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add);
 void		ft_handle_overflow(t_printf *elem, void *data, int nb, int spe);
+void		ft_param_char(t_printf *elem, va_list ap);
+int			ft_unicodelen(wchar_t unicode);
 
 #endif

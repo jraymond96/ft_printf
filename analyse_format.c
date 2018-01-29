@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/28 20:46:53 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 19:05:16 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,29 @@ int			ft_analyse_speconversion(t_printf *elem, const char *format)
 	return (++index);
 }
 
-t_printf		ft_Read_Format(const char *format, va_list ap)
+int		ft_Read_Format(const char *format, va_list ap, t_printf *elem)
 {
-	t_printf	elem;
 	int			i;
 
 	i = -1;
-	ft_bzero(&elem, sizeof(t_printf));
 	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
-			i += ft_analyse_speconversion(&elem, &format[i]);
-			ft_handle_param(&elem, ap);
+			i += ft_analyse_speconversion(elem, &format[i]);
+			if (ft_handle_param(elem, ap) == -1)
+				return (-1);
 		}
-		ft_handle_overflow(&elem, &format[i], 1, 1);
+		ft_handle_overflow(elem, (void *)&format[i], 1, 1);
 	}
-	return (elem);
+	return (0);
 }
 
 char		ft_char_is_type(char c)
 {
 	if (c == 's' || c == 'S')
+		return (c);
+	if (c == 'c' || c == 'C')
 		return (c);
 	return ('\0');
 }

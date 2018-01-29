@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/28 20:35:54 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 19:01:53 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		ft_howunicode_print(t_printf *elem, wchar_t *unicode, int *nb)
 	res = ft_unicodelen(unicode[i]);
 	while (unicode[i])
 	{
-		if (elem->flags & PRECI && *nb >= elem->precision)
-			break;
 		if ((res = ft_unicodelen(unicode[i])) == -1)
 			return (-1);
+		if (elem->flags & PRECI && *nb >= elem->precision)
+			break;
 		*nb += res;
 		i++;
 	}
@@ -49,7 +49,7 @@ int		ft_howunicode_print(t_printf *elem, wchar_t *unicode, int *nb)
 	return (i);
 }
 
-void	ft_handle_unicode(t_printf *elem, va_list ap)
+int		ft_handle_unicode(t_printf *elem, va_list ap)
 {
 	wchar_t *unicode;
 	char	str[5];
@@ -61,7 +61,8 @@ void	ft_handle_unicode(t_printf *elem, va_list ap)
 	i = 0;
 	unicode = va_arg(ap, wchar_t*);
 	ft_bzero(str, 5);
-	nbuni_print = ft_howunicode_print(elem, unicode, &nb);
+	if ((nbuni_print = ft_howunicode_print(elem, unicode, &nb)) == -1)
+		return (-1);
 	elem->flags & PRECI ? elem->flags ^= PRECI : 0;
 	nb = ft_howchar_add(elem, nb);
 	if ((elem->flags & ZERO || !(elem->flags & MINUS)) && nb)
@@ -73,6 +74,7 @@ void	ft_handle_unicode(t_printf *elem, va_list ap)
 		ft_bzero(str, 5);
 		i++;
 	}
-	if (elem->flags & MINUS)
+	if (elem->flags & MINUS && nb)
 		ft_addstr_with_minus(elem, str, nb);
+	return (0);
 }

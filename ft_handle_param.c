@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/28 18:42:21 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/29 18:58:12 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,19 @@ void	ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add)
 {
 	int		len;
 	char	c;
+	char	sp;
 
 	c = '0';
+	sp = ' ';
 	len = ft_strlen(str);
 	if (elem->flags & ZERO)
-		ft_memset(&elem->buff[elem->i_buff], '0', nb_c_add);
+		ft_handle_overflow(elem, &c, nb_c_add, 1);
 	else
-		ft_memset(&elem->buff[elem->i_buff], ' ', nb_c_add);
-	elem->i_buff += nb_c_add;
+		ft_handle_overflow(elem, &sp, nb_c_add, 1);
 	if (elem->flags & PRECI)
-	{
-		ft_strncat(&elem->buff[elem->i_buff], str, elem->precision);
-		elem->i_buff += (elem->precision > len) ? len : elem->precision;
-	}
+		ft_handle_overflow(elem, str, elem->precision, 2);
 	else
-	{
-		ft_strcpy(&elem->buff[elem->i_buff], str);
-		elem->i_buff += len;
-	}
+		ft_handle_overflow(elem, &c, len, 1);
 }
 
 void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
@@ -69,16 +64,17 @@ void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
 	ft_handle_overflow(elem, &c, nb_c_add, 1);
 }
 
-void	ft_param_string(t_printf *elem, va_list ap)
+int		ft_param_string(t_printf *elem, va_list ap)
 {
 	int		nb_c_add;
 	char	*str;
 
 	(elem->flags & ZERO && elem->flags & MINUS) ? elem->flags ^= ZERO : 0;
-	if (elem->type == 'S')
+	if (elem->type == 'S' || elem->size & L)
 	{
-		ft_handle_unicode(elem, ap);
-		return ;
+		if (ft_handle_unicode(elem, ap) == -1)
+			return (-1);
+		return (0);
 	}
 	str = va_arg(ap, char*);
 	nb_c_add = ft_howchar_add(elem, ft_strlen(str));
@@ -86,10 +82,17 @@ void	ft_param_string(t_printf *elem, va_list ap)
 		ft_addstr_no_minus(elem, (char *)str, nb_c_add);
 	else
 		ft_addstr_with_minus(elem, str, nb_c_add);
+	return (0);
 }
 
-void	ft_handle_param(t_printf *elem, va_list ap)
+int		ft_handle_param(t_printf *elem, va_list ap)
 {
+	int res;
+
+	res = 0;
 	if (elem->type == 's' || elem->type == 'S')
-		ft_param_string(elem, ap);
+		res = ft_param_string(elem, ap);
+	if (elem->type == 'c' || elem->type == 'C')
+		ft_param_char(elem, ap);
+	return (res);
 }
