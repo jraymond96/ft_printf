@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 21:47:31 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:14:04 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <stdio.h>
 # include <stdarg.h>
-# include "./libft/libft.h"
+# include <wctype.h>
+# include <locale.h>
+# include "libft.h"
 
 # define BUFF_SIZE 128
 
@@ -49,24 +51,24 @@
  ** -----------------------------
  */
 
-typedef struct s_overflow
+typedef struct	s_overflow
 {
 	int			i;
 	char		*data_b;
 	int			flag;
 }				t_overflow;
 
-typedef struct s_printf
+typedef struct	s_printf
 {
-	char	buff[BUFF_SIZE + 1];
-	int		ret;
-	int		length;
-	int		i_buff;
-	char	flags;
-	int		width;
-	int		precision;
-	char	type;
-	char	size;
+	char		buff[BUFF_SIZE + 1];
+	int			ret;
+	int			length;
+	int			i_buff;
+	char		flags;
+	int			width;
+	int			precision;
+	char		type;
+	char		size;
 }				t_printf;
 
 int			ft_printf(const char *format, ...);

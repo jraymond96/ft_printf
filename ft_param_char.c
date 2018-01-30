@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:56:05 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 17:56:31 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:48:24 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	ft_param_char(t_printf *elem, va_list ap)
 {
-	char	n;
+	char	n[2];
 	wchar_t	uni;
 	int		res;
 	char	unicode[5];
 
 	ft_bzero(unicode, 5);
+	ft_bzero(n, 2);
 	(elem->flags & MINUS && elem->flags & ZERO) ? elem->flags ^= ZERO : 0;
 	elem->flags & PRECI ? elem->flags ^= PRECI : 0;
 	if (elem->type == 'C' || elem->size & L)
@@ -36,6 +37,12 @@ void	ft_param_char(t_printf *elem, va_list ap)
 			ft_addstr_with_minus(elem, unicode, res);
 		return ;
 	}
-	n = (char)va_arg(ap, int);
-	ft_handle_overflow(elem, &n, 1, 1);
+	n[0] = (char)va_arg(ap, int);
+	res = ft_howchar_add(elem, 1);
+	if (res == 0)
+		ft_handle_overflow(elem, n, 1, 2);
+	else if (elem->flags & ZERO || !(elem->flags & MINUS))
+		ft_addstr_no_minus(elem, n, res);
+	else
+		ft_addstr_with_minus(elem, n, res);
 }

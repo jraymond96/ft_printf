@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 22:59:38 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:16:06 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int		ft_unicodelen(wchar_t unicode)
 {
-	if ((MB_CUR_MAX <= 1 && unicode > 255) || (unicode > 55295 &&
-				unicode < 57344) || unicode > 1114111)
+	if ((unicode > 55295 && unicode < 57344) || unicode > 1114111 ||
+			(MB_CUR_MAX <= 1 && unicode > 255))
 		return (-1);
-	if (unicode >= 0 && unicode <= 127)
+	else if ((unicode >= 0 && unicode <= 127) || (unicode > 127 &&
+			unicode < 255 && MB_CUR_MAX == 1))
 		return (1);
 	else if (unicode >= 128 && unicode <= 2047)
 		return (2);
@@ -36,12 +37,13 @@ int		ft_howunicode_print(t_printf *elem, wchar_t *unicode, int *nb)
 	res = ft_unicodelen(unicode[i]);
 	while (unicode[i])
 	{
-		if ((res = ft_unicodelen(unicode[i])) == -1)
-			return (-1);
 		if (elem->flags & PRECI && *nb >= elem->precision)
 			break ;
+		if (res == -1)
+			return (-1);
 		*nb += res;
 		i++;
+		res = ft_unicodelen(unicode[i]);
 	}
 	if (elem->flags & PRECI && *nb > elem->precision)
 		*nb -= ft_unicodelen(unicode[--i]);

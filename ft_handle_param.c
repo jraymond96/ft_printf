@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 18:58:12 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:33:38 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add)
 		ft_handle_overflow(elem, &c, nb_c_add, 1);
 	else
 		ft_handle_overflow(elem, &sp, nb_c_add, 1);
-	if (elem->flags & PRECI)
+	if (elem->flags & PRECI && len && elem->precision < len)
 		ft_handle_overflow(elem, str, elem->precision, 2);
-	else
-		ft_handle_overflow(elem, &c, len, 1);
+	else if ((!(elem->flags & PRECI) || elem->precision >= len) && len)
+		ft_handle_overflow(elem, str, len, 2);
 }
 
 void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
@@ -57,9 +57,9 @@ void	ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add)
 
 	c = ' ';
 	len = ft_strlen(str);
-	if (elem->flags & PRECI)
+	if (elem->flags & PRECI && len && elem->precision < len)
 		ft_handle_overflow(elem, str, elem->precision, 2);
-	else
+	else if ((!(elem->flags & PRECI) || elem->precision >= len) && len)
 		ft_handle_overflow(elem, str, len, 2);
 	ft_handle_overflow(elem, &c, nb_c_add, 1);
 }
@@ -76,12 +76,20 @@ int		ft_param_string(t_printf *elem, va_list ap)
 			return (-1);
 		return (0);
 	}
-	str = va_arg(ap, char*);
+	if (!(str = va_arg(ap, char*)))
+	{
+		nb_c_add = ft_howchar_add(elem, 6);
+		if (elem->flags & ZERO || !(elem->flags & MINUS))
+			ft_addstr_no_minus(elem, "(null)", nb_c_add);
+		else
+			ft_addstr_with_minus(elem, "(null)", nb_c_add);
+		return (0);
+	}
 	nb_c_add = ft_howchar_add(elem, ft_strlen(str));
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
 		ft_addstr_no_minus(elem, (char *)str, nb_c_add);
 	else
-		ft_addstr_with_minus(elem, str, nb_c_add);
+		ft_addstr_with_minus(elem, str, nb_c_add);	
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 21:43:08 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:21:59 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format)
 		else
 			index++;
 	}
-	return (++index);
+	return (index);
 }
 
 int		ft_read_format(const char *format, va_list ap, t_printf *elem)
@@ -49,8 +49,12 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 			i += ft_analyse_speconversion(elem, &format[i]);
 			if (ft_handle_param(elem, ap) == -1)
 				return (-1);
+			elem->width = 0;
+			elem->flags = '\0';
+			elem->size = '\0';
 		}
-		ft_handle_overflow(elem, (void *)&format[i], 1, 1);
+		else
+			ft_handle_overflow(elem, (void *)&format[i], 1, 1);
 	}
 	return (0);
 }

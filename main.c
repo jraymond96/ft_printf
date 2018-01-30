@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 15:29:25 by jraymond         ###   ########.fr       */
+/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
+/*   Updated: 2018/01/30 22:51:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	main(void)
 {
-	va_list		ap;
-	t_printf	elem;
+	wchar_t s[4];
 
-	ft_bzero(&elem, sizeof(t_printf));
-	va_start(ap, format);
-	if (ft_read_format(format, ap, &elem) == -1)
-		return (-1);
-	ft_putstr(elem.buff);
-	va_end(ap);
-	if (elem.ret == 0)
-		return (elem.i_buff);
-	else
-		return (elem.ret);
+	s[0] = 0x53;
+	s[1] = 0x3abc;
+	s[2] = 0x81000;
+	s[3] = '\0';
+
+	setlocale(LC_ALL, "");
+	printf("\nret %d\n", printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+	printf("\nret %d\n", ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+	return (0);
 }

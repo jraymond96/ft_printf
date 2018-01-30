@@ -6,11 +6,11 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 21:47:11 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/29 21:49:17 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/30 15:46:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
 
 #define CHAR (1 << i)
 
