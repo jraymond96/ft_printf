@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/30 17:27:12 by jraymond         ###   ########.fr        #
+#    Updated: 2018/01/30 23:12:39 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) -o $@ -c $^
 
 cp :
-	cp libftprintf.a ./curqui_test
+	cp libftprintf.a ~/curqui_test
 
 clean :
 		rm -rf $(OBJ)
