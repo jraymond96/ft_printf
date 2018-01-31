@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 22:51:34 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:25:26 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	s[3] = '\0';
 
 	setlocale(LC_ALL, "");
-	printf("\nret %d\n", printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
-	printf("\nret %d\n", ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+	printf("\nret %d\n", printf("|%d|\n", 12));
+	printf("\nret %d\n", ft_printf("|%d|", 12));
 	return (0);
 }

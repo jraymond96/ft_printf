@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_param_decimal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 13:47:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/31 16:15:06 by jraymond         ###   ########.fr       */
+/*   Created: 2018/01/31 18:59:02 by jraymond          #+#    #+#             */
+/*   Updated: 2018/01/31 19:25:14 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int		ft_intlen(intmax_t arg)
 {
-	va_list		ap;
-	t_printf	elem;
+	int			i;
+	intmax_t	res;
 
-	ft_bzero(&elem, sizeof(t_printf));
-	va_start(ap, format);
-	if (ft_read_format(format, ap, &elem) == -1)
-		return (-1);
-	write(1, elem.buff, elem.i_buff);
-	elem.ret += elem.i_buff;
-	va_end(ap);
-	if (elem.ret == 0)
-		return (elem.i_buff);
-	else
-		return (elem.ret);
+	i = 0;
+	res = arg;
+	while (res)
+	{
+		res = res / 10;
+		i++;
+	}
+	return (i);
+}
+
+int		ft_param_decimal(t_printf *elem, va_list ap)
+{
+	intmax_t	arg;
+	t_printf	*toto;
+	int			i;
+	
+	toto = elem;
+	arg = va_arg(ap, int);
+	i = ft_intlen(arg);
+	/*arg = ft_handle_size(elem, va_list ap)*/
+	return (0);
 }

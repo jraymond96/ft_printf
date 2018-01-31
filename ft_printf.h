@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 22:14:04 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:25:18 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define H (1 << 1)
 # define L (1 << 2)
 # define LL (1 << 3)
-# define J (1 << 4)
-# define Z (1 << 5)
+# define Z (1 << 4)
+# define J (1 << 5)
 
 /*
  ** -----------------------------
@@ -67,6 +67,7 @@ typedef struct	s_printf
 	char		flags;
 	int			width;
 	int			precision;
+	int			save;
 	char		type;
 	char		size;
 }				t_printf;
@@ -88,7 +89,8 @@ int			ft_howchar_add(t_printf *elem, int len);
 void		ft_addstr_no_minus(t_printf *elem, char *str, int nb_c_add);
 void		ft_addstr_with_minus(t_printf *elem, char *str, int nb_c_add);
 void		ft_handle_overflow(t_printf *elem, void *data, int nb, int spe);
-void		ft_param_char(t_printf *elem, va_list ap);
+int			ft_param_char(t_printf *elem, va_list ap);
 int			ft_unicodelen(wchar_t unicode);
+int			ft_param_decimal(t_printf *elem, va_list ap);
 
 #endif

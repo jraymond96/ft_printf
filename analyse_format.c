@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 22:21:59 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/31 19:25:22 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 		{
 			i += ft_analyse_speconversion(elem, &format[i]);
 			if (ft_handle_param(elem, ap) == -1)
+			{
+				write (1, elem->buff, elem->save);
 				return (-1);
+			}
+			elem->save = elem->i_buff;
 			elem->width = 0;
 			elem->flags = '\0';
 			elem->size = '\0';
@@ -64,6 +68,8 @@ char	ft_char_is_type(char c)
 	if (c == 's' || c == 'S')
 		return (c);
 	if (c == 'c' || c == 'C')
+		return (c);
+	if (c == 'd' || c == 'D')
 		return (c);
 	return ('\0');
 }

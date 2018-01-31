@@ -6,17 +6,52 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 14:56:05 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 22:48:24 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/31 16:13:43 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_param_char(t_printf *elem, va_list ap)
+void	ft_handlechar_null(t_printf *elem, int nb_c_add, char *str)
+{
+	if (elem->flags & ZERO || !(elem->flags & MINUS))
+	{
+		ft_addstr_no_minus(elem, str, nb_c_add);
+		ft_handle_overflow(elem, &str[0], 1, 1);
+	}
+	else
+	{
+		ft_handle_overflow(elem, &str[0], 1, 1);
+		ft_addstr_with_minus(elem, str, nb_c_add);
+	}
+}
+
+int		ft_handle_unicode_char(t_printf *elem, va_list ap)
+{
+	wchar_t	unicode;
+	int		nb_c_add;
+	char	str[5];
+
+	unicode = va_arg(ap, wchar_t);
+	nb_c_add = ft_unicodelen(unicode);
+	if (nb_c_add == -1)
+		return (-1);
+	nb_c_add = elem->width > nb_c_add ? elem->width - nb_c_add : 0;
+	ft_bzero(str, 5);
+	unicode_to_str(unicode, str);
+	if (str[0] == '\0')
+		ft_handlechar_null(elem, nb_c_add, str);
+	else if ((elem->flags & ZERO || !(elem->flags & MINUS)) && nb_c_add)
+		ft_addstr_no_minus(elem, str, nb_c_add);
+	else
+		ft_addstr_with_minus(elem, str, nb_c_add);
+	return (0);
+}
+
+int		ft_param_char(t_printf *elem, va_list ap)
 {
 	char	n[2];
-	wchar_t	uni;
-	int		res;
+	int		nb_c_add;
 	char	unicode[5];
 
 	ft_bzero(unicode, 5);
@@ -25,24 +60,16 @@ void	ft_param_char(t_printf *elem, va_list ap)
 	elem->flags & PRECI ? elem->flags ^= PRECI : 0;
 	if (elem->type == 'C' || elem->size & L)
 	{
-		uni = va_arg(ap, wchar_t);
-		res = ft_unicodelen(uni);
-		res = ((elem->width - res) > 0) ? elem->width - res : 0;
-		if ((elem->flags & ZERO || !(elem->flags & MINUS)) && res)
-			ft_addstr_no_minus(elem, unicode, res);
-		unicode_to_str(uni, unicode);
-		ft_handle_overflow(elem, unicode, ft_strlen(unicode), 2);
-		ft_bzero(unicode, 5);
-		if (elem->flags & MINUS && res)
-			ft_addstr_with_minus(elem, unicode, res);
-		return ;
+		nb_c_add = ft_handle_unicode_char(elem, ap);
+		return (nb_c_add);
 	}
 	n[0] = (char)va_arg(ap, int);
-	res = ft_howchar_add(elem, 1);
-	if (res == 0)
-		ft_handle_overflow(elem, n, 1, 2);
+	nb_c_add = ft_howchar_add(elem, 1);
+	if (n[0] == 0)
+		ft_handlechar_null(elem, nb_c_add, n);
 	else if (elem->flags & ZERO || !(elem->flags & MINUS))
-		ft_addstr_no_minus(elem, n, res);
+		ft_addstr_no_minus(elem, n, nb_c_add);
 	else
-		ft_addstr_with_minus(elem, n, res);
+		ft_addstr_with_minus(elem, n, nb_c_add);
+	return (0);
 }

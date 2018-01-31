@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/30 22:16:06 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/01/31 15:30:06 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_unicodelen(wchar_t unicode)
 {
 	if ((unicode > 55295 && unicode < 57344) || unicode > 1114111 ||
-			(MB_CUR_MAX <= 1 && unicode > 255))
+			(MB_CUR_MAX <= 1 && unicode > 255) || unicode < 0)
 		return (-1);
 	else if ((unicode >= 0 && unicode <= 127) || (unicode > 127 &&
 			unicode < 255 && MB_CUR_MAX == 1))
