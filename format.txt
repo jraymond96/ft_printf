@@ -8,3 +8,12 @@ WIDTH = largeur;
 savoir si l utilisateur a fais setlocale si non return (0);
 
 setlocale();
+
+
+
+
+decimal :	- flags 0 annuler si il y a une precision;
+			- flags - annule le flags 0;
+			- # pas utiliser
+			- le + annule espace
+			- espace : si signe positif mettre un espace sinon mettre -

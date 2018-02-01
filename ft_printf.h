@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/31 19:25:18 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/01 19:01:00 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ typedef struct	s_printf
 	char		type;
 	char		size;
 }				t_printf;
+
+typedef	struct	s_nbcaddpw
+{
+	int			preci;
+	int			width;
+}				t_nbcaddpw;
 
 int			ft_printf(const char *format, ...);
 int			ft_read_format(const char *format, va_list ap, t_printf *elem);
