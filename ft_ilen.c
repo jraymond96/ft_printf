@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ilen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 12:24:01 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/02 11:44:03 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/02 11:50:33 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int		ft_ilen(intmax_t arg)
 {
-	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%-5.3d|\n", -42));
-	printf("\nret %d\n", ft_printf("|%-5.3d|\n", -42));
-	return (0);
+	int			i;
+	intmax_t	res;
+
+	i = 0;
+	res = arg;
+	if (res == 0)
+		return (0);
+	while (res)
+	{
+		res = res / 10;
+		i++;
+	}
+	return (i);
 }

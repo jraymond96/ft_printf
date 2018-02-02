@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/01 19:01:00 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 11:48:33 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void		ft_handle_overflow(t_printf *elem, void *data, int nb, int spe);
 int			ft_param_char(t_printf *elem, va_list ap);
 int			ft_unicodelen(wchar_t unicode);
 int			ft_param_decimal(t_printf *elem, va_list ap);
+int			ft_ilen(intmax_t arg);
 
 #endif

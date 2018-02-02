@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/01/31 18:58:25 by jraymond         ###   ########.fr        #
+#    Updated: 2018/02/02 11:49:47 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,8 @@ SRCS = ft_memset.c \
 				ft_unicode_to_str.c \
 				ft_handle_overflow.c \
 				ft_param_char.c	\
-				ft_param_decimal.c
+				ft_param_decimal.c \
+				ft_ilen.c
 
 OBJ = $(SRCS:.c=.o)
 

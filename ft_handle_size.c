@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_handle_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 12:24:01 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/02 12:31:09 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/02 13:02:02 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+intmax_t	ft_handle_size(t_printf *elem, va_list ap)
 {
-	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%-5.3d|\n", -42));
-	printf("\nret %d\n", ft_printf("|%-5.3d|\n", -42));
-	return (0);
+	intmax_t	arg;
+
+	if ()
+	return (arg);
 }
