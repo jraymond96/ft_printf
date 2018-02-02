@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:59:02 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 12:23:13 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 18:08:25 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 	more = '+';
 	if (numb[0] == '-')
 		nbca->preci = (nbca->preci - 1) < 0 ? 0 : nbca->preci--;
-	if (elem->flags & SPACE)
+	if (elem->flags & SPACE && numb[0] != '-')
 	{
 		ft_handle_overflow(elem, &sp, 1, 1);
 		nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
@@ -92,10 +92,15 @@ void	ft_padding_numbneg(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
 	{	
 		if (!(elem->flags & ZERO))
+		{
 			ft_handle_overflow(elem, &sp, nbca->width, 1);
+			ft_handle_overflow(elem, &numb[0], 1, 1);
+		}
 		else
+		{
+			ft_handle_overflow(elem, &numb[0], 1, 1);
 			ft_handle_overflow(elem, &zero, nbca->width, 1);
-		ft_handle_overflow(elem, &numb[0], 1, 1);
+		}
 		numb++;
 		ft_handle_overflow(elem, &zero, nbca->preci, 1);
 		ft_handle_overflow(elem, numb, ft_strlen(numb), 2);
@@ -116,13 +121,18 @@ int		ft_param_decimal(t_printf *elem, va_list ap)
 	char		*numb;
 	t_nbcaddpw	nbca;
 	
-	arg = va_arg(ap, int);
-	numb = ft_itoa(arg);
+	arg = ft_handle_size(elem, ap);
+	numb = ft_lltoa(arg);
 	if (elem->flags & ZERO && (elem->flags & MINUS || elem->flags & PRECI))
 		elem->flags ^= ZERO;
 	(elem->flags & SPACE && elem->flags & MORE) ? elem->flags ^= SPACE : 0;
 	nb_c_add_pw(&nbca, elem, ft_ilen(arg), numb);
 	ft_handle_sign(elem, &nbca, numb);
+	if (arg == 0 && elem->flags & PRECI && elem->precision == 0)
+	{
+		ft_padding_numbnull(elem, &nbca);
+		return (0);
+	}
 	if (numb[0] == '-')
 		ft_padding_numbneg(elem, &nbca, numb);
 	else

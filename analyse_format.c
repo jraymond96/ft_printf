@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 12:27:57 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 17:35:22 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	ft_char_is_type(char c)
 	if (c == 'c' || c == 'C')
 		return (c);
 	if (c == 'd' || c == 'D' || c == 'i')
+		return (c);
+	if (c == 'u' || c == 'U')
 		return (c);
 	return ('\0');
 }

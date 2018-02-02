@@ -6,7 +6,7 @@
 /*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 18:29:51 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/19 13:20:27 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 15:19:28 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,8 @@ char					*ft_strnstr(const char *s1, const char *s2, size_t n);
 char					*ft_strjoin_free(char const *s1, char const *s2, int i);
 char					*ft_strdup_free(char *s, char **free);
 int						ft_atoi_firstnbr(const char *str);
+int						ft_ilen(intmax_t arg);
+char					*ft_lltoa(long long n);
+char					*ft_ulltoa(unsigned long long n);
 
 #endif

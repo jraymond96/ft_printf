@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_padding_numbnull.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 18:16:47 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/02 16:12:57 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/02 16:45:23 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
-{
-	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%10%|"));
-	printf("\nret %d\n", ft_printf("%D", 0xff11ff11ff88));
-	return (0);
+void	ft_padding_numbnull(t_printf *elem, t_nbcaddpw *nbca)
+{	
+	char	sp;
+	char	more;
+
+	sp = ' ';
+	more = '+';
+	if (elem->flags & MINUS)
+	{
+		ft_handle_overflow(elem, &sp, nbca->width, 1);
+		if (elem->flags & MORE)
+			ft_handle_overflow(elem, &more, 1, 1);
+	}
+	else
+	{
+		if (elem->flags & MORE)
+			ft_handle_overflow(elem, &more, 1, 1);
+		ft_handle_overflow(elem, &sp, nbca->width, 1);
+	}
 }

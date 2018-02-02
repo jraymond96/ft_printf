@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 12:31:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 13:02:02 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 18:17:21 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,40 @@ intmax_t	ft_handle_size(t_printf *elem, va_list ap)
 {
 	intmax_t	arg;
 
-	if ()
+	if (elem->size & J && elem->type != 'D')
+		arg = va_arg(ap, intmax_t);
+	else if (elem->size & Z && elem->type != 'D')
+		arg = va_arg(ap, size_t);
+	else if (elem->size & LL && elem->type != 'D')
+		arg = va_arg(ap, long long);
+	else if (elem->size & L || elem->type == 'D')
+		arg = va_arg(ap, long);
+	else if (elem->size & H && elem->type != 'D')
+		arg = (short)va_arg(ap, int);
+	else if (elem->size & HH && elem->type != 'D')
+		arg = (signed char)va_arg(ap, int);
+	else
+		arg = va_arg(ap, int);
+	return (arg);
+}
+
+uintmax_t	ft_handle_usize(t_printf *elem, va_list ap)
+{
+	uintmax_t	arg;
+
+	if (elem->size & J && elem->type != 'O')
+		arg = va_arg(ap, uintmax_t);
+	else if (elem->size & Z && elem->type != 'O')
+		arg = va_arg(ap, size_t);
+	else if (elem->size & LL && elem->type != 'O')
+		arg = va_arg(ap, unsigned long long);
+	else if (elem->size & L || elem->type == 'O')
+		arg = va_arg(ap, unsigned long);
+	else if (elem->size & H && elem->type != 'O')
+		arg = (unsigned short)va_arg(ap, int);
+	else if (elem->size & HH && elem->type != 'O')
+		arg = (unsigned char)va_arg(ap, int);
+	else
+		arg = va_arg(ap, unsigned);
 	return (arg);
 }

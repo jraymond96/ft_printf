@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/02/02 11:49:47 by jraymond         ###   ########.fr        #
+#    Updated: 2018/02/02 17:30:13 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,12 @@ SRCS = ft_memset.c \
 				ft_handle_overflow.c \
 				ft_param_char.c	\
 				ft_param_decimal.c \
-				ft_ilen.c
+				ft_ilen.c \
+				ft_handle_size.c \
+				ft_lltoa.c \
+				ft_ulltoa.c \
+				ft_padding_numbnull.c \
+				ft_param_unsigned.c
 
 OBJ = $(SRCS:.c=.o)
 

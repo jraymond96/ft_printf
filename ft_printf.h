@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 11:48:33 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/02 18:12:03 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,13 @@ void		ft_handle_overflow(t_printf *elem, void *data, int nb, int spe);
 int			ft_param_char(t_printf *elem, va_list ap);
 int			ft_unicodelen(wchar_t unicode);
 int			ft_param_decimal(t_printf *elem, va_list ap);
-int			ft_ilen(intmax_t arg);
+intmax_t	ft_handle_size(t_printf *elem, va_list ap);
+void		ft_padding_numbnull(t_printf *elem, t_nbcaddpw *nbca);
+uintmax_t	ft_handle_usize(t_printf *elem, va_list ap);
+void		nb_c_add_pw(t_nbcaddpw *nbca, t_printf *elem, int intl, char *numb);
+void		ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb);
+void		ft_padding_numbposi(t_printf *elem, t_nbcaddpw *nbca, char *numb);
+int			ft_param_unsigned(t_printf *elem, va_list ap);
+int			ft_uilen(uintmax_t arg);
 
 #endif
