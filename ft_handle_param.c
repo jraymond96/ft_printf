@@ -106,5 +106,7 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 		res = ft_param_decimal(elem, ap);
 	if (elem->type == 'u' || elem->type == 'U')
 		res = ft_param_unsigned(elem, ap);
+	if (elem->type == '%')
+		res = ft_param_percent(elem);
 	return (res);
 }

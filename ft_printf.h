@@ -106,5 +106,6 @@ void		ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb);
 void		ft_padding_numbposi(t_printf *elem, t_nbcaddpw *nbca, char *numb);
 int			ft_param_unsigned(t_printf *elem, va_list ap);
 int			ft_uilen(uintmax_t arg);
+int		ft_param_percent(t_printf *elem);
 
 #endif

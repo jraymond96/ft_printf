@@ -16,7 +16,7 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format)
 {
 	int	index;
 
-	index = 0;
+	index = 1;
 	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
 	{
 		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
@@ -72,6 +72,8 @@ char	ft_char_is_type(char c)
 	if (c == 'd' || c == 'D' || c == 'i')
 		return (c);
 	if (c == 'u' || c == 'U')
+		return (c);
+	if (c == '%')
 		return (c);
 	return ('\0');
 }

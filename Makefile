@@ -92,7 +92,8 @@ SRCS = ft_memset.c \
 				ft_lltoa.c \
 				ft_ulltoa.c \
 				ft_padding_numbnull.c \
-				ft_param_unsigned.c
+				ft_param_unsigned.c \
+				ft_param_percent.c
 
 OBJ = $(SRCS:.c=.o)
 

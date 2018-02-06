@@ -15,7 +15,7 @@
 int	main(void)
 {
 	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%10%|"));
-	printf("\nret %d\n", ft_printf("%D", 0xff11ff11ff88));
+	printf("\nret %d\n", printf("|%10s|\n", "coucou"));
+	printf("\nret %d\n", ft_printf("|%10s|\n", "coucou"));
 	return (0);
 }
