@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 14:40:28 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/07 20:17:47 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(void)
 {
 	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%#X|\n", 131555313));
-	printf("\nret %d\n", ft_printf("|%s|\n", "coucou"));
+	printf("\nret %d\n", printf("|%#o|", 0));
+	printf("\nret %d\n", ft_printf("|%#o|", 0));
 	return (0);
 }

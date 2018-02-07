@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_ulltoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 11:13:42 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 15:41:39 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/07 15:35:31 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/07 16:24:31 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_countint(int nb, int base)
+int		ft_ullcountint(unsigned long long nb, int base)
 {
-	int		len;
+	int	len;
 
 	if (nb == 0)
 		return (1);
 	len = 0;
-	(nb < 0 && base == 10) ? len++ : 0;
 	while (nb != 0)
 	{
 		nb /= base;
@@ -28,26 +27,23 @@ static int	ft_countint(int nb, int base)
 	return (len++);
 }
 
-char	*ft_itoa_base(int nb, int base)
+char	*ft_ulltoa_base(unsigned long long nb, int base)
 {
 	int		len;
 	char	*buf;
 	char	rest[17];
-	int		sign;
 
 	ft_strcpy(rest, "0123456789ABCDEF");
-	len = ft_countint(nb, base);
+	len = ft_ullcountint(nb, base);
 	if (!(buf = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	buf[len] = '\0';
 	len--;
-	sign = (nb < 0 && base == 10) ? 1 : 0;
 	while (len >= 0)
 	{
-		buf[len] = rest[ft_abs((nb % base))];
+		buf[len] = rest[ft_llabs((nb % base))];
 		len--;
 		nb /= base;
 	}
-	sign == 1 ? buf[0] = '-': 0;
 	return (buf);
 }

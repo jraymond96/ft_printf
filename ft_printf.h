@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 18:12:03 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/07 20:16:01 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ void		ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb);
 void		ft_padding_numbposi(t_printf *elem, t_nbcaddpw *nbca, char *numb);
 int			ft_param_unsigned(t_printf *elem, va_list ap);
 int			ft_uilen(uintmax_t arg);
-int		ft_param_percent(t_printf *elem);
+int			ft_param_percent(t_printf *elem);
+uintmax_t	ft_handle_uoctsize(t_printf *elem, va_list ap);
+int			ft_param_octal(t_printf *elem, va_list ap);
+int			ft_padding_octnull(t_printf *elem, t_nbcaddpw *nbca);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 12:31:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 18:17:21 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/07 15:34:09 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ intmax_t	ft_handle_size(t_printf *elem, va_list ap)
 }
 
 uintmax_t	ft_handle_usize(t_printf *elem, va_list ap)
+{
+	uintmax_t	arg;
+
+	if (elem->size & J && elem->type != 'U')
+		arg = va_arg(ap, uintmax_t);
+	else if (elem->size & Z && elem->type != 'U')
+		arg = va_arg(ap, size_t);
+	else if (elem->size & LL && elem->type != 'U')
+		arg = va_arg(ap, unsigned long long);
+	else if (elem->size & L || elem->type == 'U')
+		arg = va_arg(ap, unsigned long);
+	else if (elem->size & H && elem->type != 'U')
+		arg = (unsigned short)va_arg(ap, int);
+	else if (elem->size & HH && elem->type != 'U')
+		arg = (unsigned char)va_arg(ap, int);
+	else
+		arg = va_arg(ap, unsigned);
+	return (arg);
+}
+
+uintmax_t	ft_handle_uoctsize(t_printf *elem, va_list ap)
 {
 	uintmax_t	arg;
 

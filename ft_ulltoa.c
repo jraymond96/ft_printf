@@ -6,15 +6,15 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 15:05:41 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 17:51:31 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/07 16:25:06 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long		ft_countint(unsigned long long n)
+int		ft_countull(unsigned long long n)
 {
-	long	len;
+	int		len;
 
 	if (n == 0)
 		return (1);
@@ -29,12 +29,10 @@ static long		ft_countint(unsigned long long n)
 
 char			*ft_ulltoa(unsigned long long n)
 {
-	unsigned long long	n_lenght;
-	long				len;
+	int					len;
 	char				*buf;
 
-	n_lenght = n;
-	len = ft_countint(n_lenght);
+	len = ft_countull(n);
 	buf = (char*)malloc(sizeof(char) * (len + 1));
 	if (!buf)
 		return (NULL);
@@ -42,9 +40,9 @@ char			*ft_ulltoa(unsigned long long n)
 	len--;
 	while (len >= 0)
 	{
-		buf[len] = (n_lenght % 10) + '0';
+		buf[len] = (n % 10) + '0';
 		len--;
-		n_lenght /= 10;
+		n /= 10;
 	}
 	return (buf);
 }
