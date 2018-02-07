@@ -6,7 +6,7 @@
 /*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 18:29:51 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 15:19:28 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/07 14:28:47 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,8 @@ int						ft_atoi_firstnbr(const char *str);
 int						ft_ilen(intmax_t arg);
 char					*ft_lltoa(long long n);
 char					*ft_ulltoa(unsigned long long n);
+char					*ft_itoa_base(int nb, int base);
+int						ft_abs(int nb);
+long long				ft_llabs(long long nb);
 
 #endif

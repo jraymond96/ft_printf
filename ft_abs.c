@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 14:40:28 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/07 14:15:58 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/07 14:28:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+int					ft_abs(int nb)
 {
-	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	printf("\nret %d\n", printf("|%#X|\n", 131555313));
-	printf("\nret %d\n", ft_printf("|%s|\n", "coucou"));
-	return (0);
+	return(nb = (nb < 0) ? -nb : nb);
+}
+
+long long			ft_llabs(long long nb)
+{	
+	return(nb = (nb < 0) ? -nb : nb);
 }

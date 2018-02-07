@@ -1,51 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/14 18:42:26 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 14:28:14 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/07 11:13:42 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/07 14:20:58 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_countint(int n)
+static int	ft_countint(int nb, int base)
 {
-	long	len;
+	int		len;
 
-	if (n == 0)
+	if (nb == 0)
 		return (1);
 	len = 0;
-	(n < 0) ? len++ : 0;
-	while (n != 0)
+	(nb < 0 && base == 10) ? len++ : 0;
+	while (nb != 0)
 	{
-		n /= 10;
+		nb /= base;
 		len++;
 	}
 	return (len++);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_base(int nb, int base)
 {
 	int		len;
 	char	*buf;
+	char	rest[17];
 	int		sign;
 
-	len = ft_countint(n);
+	ft_strcpy(rest, "0123456789ABCDEF");
+	len = ft_countint(nb, base);
 	if (!(buf = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	buf[len] = '\0';
 	len--;
-	sign = (n < 0) ? 1 : 0; 
+	sign = (nb < 0 && base == 10) ? 1 : 0;
 	while (len >= 0)
 	{
-		buf[len] = (n % 10) + '0';
+		buf[len] = rest[ft_abs((nb % base))];
 		len--;
-		n /= 10;
+		nb /= base;
 	}
-	sign == 1 ? buf[0] = '-' : 0;
+	sign == 1 ? buf[0] = '-': 0;
 	return (buf);
 }
