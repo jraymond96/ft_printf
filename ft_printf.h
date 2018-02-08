@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 20:16:01 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 12:59:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int			ft_param_percent(t_printf *elem);
 uintmax_t	ft_handle_uoctsize(t_printf *elem, va_list ap);
 int			ft_param_octal(t_printf *elem, va_list ap);
 int			ft_padding_octnull(t_printf *elem, t_nbcaddpw *nbca);
+uintmax_t	ft_handle_uhexasize(t_printf *elem, t_nbcaddpw *nbca);
 
 #endif
