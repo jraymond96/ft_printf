@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 14:49:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 16:44:02 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 21:26:48 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ void	ft_padding_numb(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 }
 void	ft_handle_sharp(t_nbcaddpw *nbca, t_printf *elem, unsigned long long nb)
 {
-	char	sharp;
-
-	sharp = '0';
 	if (elem->flags & SHARP && elem->flags & MINUS && nb != 0)
 	{
 		if (nbca->preci > 0 && !(nbca->width))
@@ -89,8 +86,7 @@ int		ft_param_octal(t_printf *elem, va_list ap)
 	nb_c_addoct_pw(&nbca, elem, ft_strlen(numb));
 	ft_handle_sharp(&nbca, elem, arg);
 	if (arg == 0)
-		if (ft_padding_octnull(elem, &nbca) == 1)
-			return (0);
+		return (ft_paddoct_null(elem, &nbca));
 	ft_padding_numb(elem, &nbca, numb);
 	ft_memdel((void**)&numb);
 	return (0);

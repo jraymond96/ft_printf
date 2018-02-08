@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 16:12:57 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 12:41:56 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 21:29:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,51 +33,42 @@ void	ft_padding_numbnull(t_printf *elem, t_nbcaddpw *nbca)
 	}
 }
 
-int		ft_padd_octnull(t_printf *elem, t_nbcaddpw * nbca)
-{	
-	char	sp;
-	char	zero;
+void	nb_c_addoctnull_pw(t_nbcaddpw *nbca, t_printf *elem)
+{
+	int			i;
 
-	sp = ' ';
-	zero = '0';
-	if (elem->flags & ZERO && nbca->width && !(nbca->preci))
-		return (0);
-	if (nbca->preci && !(nbca->width))
-	{	
-		ft_handle_overflow(elem, &zero, (nbca->preci + 1), 1);
-		return (1);
-	}
-	if (nbca->width && nbca->preci)
-	{
-		nbca->width += 1;
-		elem->flags ^= SHARP;
-		return (0);
-	}
-	return (2);
+	ft_bzero(nbca, sizeof(t_nbcaddpw));
+	if (elem->flags & PRECI && elem->flags & SHARP)
+		nbca->preci = (0 >= elem->precision) ? 1 : elem->precision;
+	else if (elem->flags & PRECI && !(elem->flags & SHARP))
+		nbca->preci = (0 >= elem->precision) ? 0 : elem->precision;
+	else if (!(elem->flags & PRECI))
+		nbca->preci = 1;
+	i = nbca->preci;
+	if (elem->width)
+		nbca->width = elem->width <= i ? 0 : (elem->width - i);
 }
 
-int		ft_padding_octnull(t_printf *elem, t_nbcaddpw *nbca)
+int		ft_paddoct_null(t_printf *elem, t_nbcaddpw *nbca)
 {
 	char	sp;
 	char	zero;
-	int		res;
-
+	
 	sp = ' ';
 	zero = '0';
-	if (elem->flags & SHARP)
+	nb_c_addoctnull_pw(nbca, elem);
+	if (elem->flags & ZERO || !(elem->flags & MINUS))
 	{
-		res = ft_padd_octnull(elem, nbca);
-		if (res == 1 || res == 0)
-			return (res);
-		if (!(nbca->width && nbca->preci) && elem->width)
-			ft_handle_overflow(elem, &sp, 1, 1);
-		elem->flags ^= SHARP;
-		if (!(elem->flags & PRECI) && nbca->width)
-			ft_handle_overflow(elem, &sp, 1, 1);
-		if (nbca->preci)
-			nbca->preci -= 1;
+		if (!(elem->flags & ZERO))
+			ft_handle_overflow(elem, &sp, nbca->width, 1);
 		else
-			nbca->width > 0 ? nbca->width -= 1 : 0;
+			ft_handle_overflow(elem, &zero, nbca->width, 1);
+		ft_handle_overflow(elem, &zero, nbca->preci, 1);
+	}
+	else
+	{
+		ft_handle_overflow(elem, &zero, nbca->preci, 1);
+		ft_handle_overflow(elem, &sp, nbca->width, 1);
 	}
 	return (0);
 }
