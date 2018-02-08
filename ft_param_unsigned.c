@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 16:55:59 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 18:09:30 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 16:46:03 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int		ft_param_unsigned(t_printf *elem, va_list ap)
 		return (0);
 	}
 	ft_padding_numbposi(elem, &nbca, numb);
+	ft_memdel((void**)&numb);
 	return (0);
 }

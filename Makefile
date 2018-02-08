@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/02/07 16:48:12 by jraymond         ###   ########.fr        #
+#    Updated: 2018/02/08 15:08:47 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,8 @@ SRCS = ft_memset.c \
 				ft_itoa_base.c \
 				ft_abs.c \
 				ft_param_octal.c \
-				ft_ulltoa_base.c
+				ft_ulltoa_base.c \
+				ft_param_hexa.c
 
 OBJ = $(SRCS:.c=.o)
 

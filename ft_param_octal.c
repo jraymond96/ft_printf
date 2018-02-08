@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 14:49:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 12:53:47 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 16:44:02 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int		ft_param_octal(t_printf *elem, va_list ap)
 		if (ft_padding_octnull(elem, &nbca) == 1)
 			return (0);
 	ft_padding_numb(elem, &nbca, numb);
+	ft_memdel((void**)&numb);
 	return (0);
 }

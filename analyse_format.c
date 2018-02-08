@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 15:43:29 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 15:08:13 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	ft_char_is_type(char c)
 	if (c == 'u' || c == 'U')
 		return (c);
 	if (c == 'o' || c == 'O')
+		return (c);
+	if (c == 'x' || c == 'X')
 		return (c);
 	if (c == '%')
 		return (c);

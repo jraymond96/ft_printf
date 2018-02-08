@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 15:42:53 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/08 15:07:40 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 		res = ft_param_unsigned(elem, ap);
 	if (elem->type == 'o' || elem->type == 'O')
 		res = ft_param_octal(elem, ap);
+	if (elem->type == 'x' || elem->type == 'X')
+		res = ft_param_hexa(elem, ap);
 	if (elem->type == '%')
 		res = ft_param_percent(elem);
 	return (res);
