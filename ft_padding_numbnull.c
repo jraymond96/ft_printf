@@ -19,6 +19,8 @@ void	ft_padding_numbnull(t_printf *elem, t_nbcaddpw *nbca)
 
 	sp = ' ';
 	more = '+';
+	if (elem->flags & PRECI && !(elem->precision) && elem->width)
+		nbca->width++;
 	if (elem->flags & MINUS)
 	{
 		ft_handle_overflow(elem, &sp, nbca->width, 1);

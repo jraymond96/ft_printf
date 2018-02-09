@@ -113,5 +113,6 @@ int			ft_padding_octnull(t_printf *elem, t_nbcaddpw *nbca);
 uintmax_t	ft_handle_uhexasize(t_printf *elem, va_list ap);
 int			ft_param_hexa(t_printf* elem, va_list ap);
 int			ft_paddoct_null(t_printf *elem, t_nbcaddpw *nbca);
+int			ft_param_address(t_printf *elem, va_list ap);
 
 #endif

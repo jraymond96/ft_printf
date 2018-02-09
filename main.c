@@ -17,10 +17,7 @@ int	main(void)
 	char	*str;
 
 	str = malloc(58);
-	/*printf("\nret %d\n", printf("|%010d|\n", 123));*/
-	//printf("\nret %d\n", printf("%--.4u et |%#O||%#012O||%1lc|\n", -12, 0, 0, 95));
-	//printf("\nret %d\n", ft_printf("%--.4u et |%#O||%#012O||%1lc|\n", -12, 0, 0, 95));
-	printf("\nret %d\n", printf("|%#6o|", 0));
-	printf("\nret %d\n", ft_printf("|%#6o|", 0));
+	printf("\nret %d\n", printf("|%S|", NULL));
+	printf("\nret %d\n", ft_printf("|%S|", NULL));
 	return (0);
 }

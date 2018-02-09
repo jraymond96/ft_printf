@@ -77,6 +77,8 @@ char	ft_char_is_type(char c)
 		return (c);
 	if (c == 'x' || c == 'X')
 		return (c);
+	if (c == 'p')
+		return (c);
 	if (c == '%')
 		return (c);
 	return ('\0');

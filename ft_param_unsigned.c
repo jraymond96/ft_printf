@@ -22,7 +22,8 @@ int		ft_param_unsigned(t_printf *elem, va_list ap)
 	numb = ft_ulltoa(arg);
 	if (elem->flags & ZERO && (elem->flags & MINUS || elem->flags & PRECI))
 		elem->flags ^= ZERO;
-	(elem->flags & SPACE && elem->flags & MORE) ? elem->flags ^= SPACE : 0;
+	elem->flags & MORE ? elem->flags ^= MORE : 0;
+	elem->flags & SPACE ? elem->flags ^= SPACE : 0;
 	nb_c_add_pw(&nbca, elem, ft_uilen(arg), numb);
 	ft_handle_sign(elem, &nbca, numb);
 	if (arg == 0 && elem->flags & PRECI && elem->precision == 0)

@@ -110,6 +110,8 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 		res = ft_param_octal(elem, ap);
 	if (elem->type == 'x' || elem->type == 'X')
 		res = ft_param_hexa(elem, ap);
+	if (elem->type == 'p')
+		res = ft_param_address(elem, ap);
 	if (elem->type == '%')
 		res = ft_param_percent(elem);
 	return (res);

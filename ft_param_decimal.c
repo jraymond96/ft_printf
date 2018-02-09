@@ -44,7 +44,7 @@ void	ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 		ft_handle_overflow(elem, &sp, 1, 1);
 		nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
 	}
-	if (elem->flags & MORE && elem->flags & ZERO)
+	if (elem->flags & MORE && elem->flags & ZERO && numb[0] != '-')
 	{
 		ft_handle_overflow(elem, &more, 1, 1);
 		nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
