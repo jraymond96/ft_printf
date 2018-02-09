@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 12:51:15 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 16:45:20 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/09 18:56:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ int		ft_param_hexa(t_printf *elem, va_list ap)
 	if (elem->flags & SHARP && arg != 0)
 		(nbca.width - 2) >= 0 ? nbca.width -= 2 : nbca.width == 0;
 	i = 0;
-	if (elem->type == 'x')
+	if (elem->type == 'X')
 	{
 		while (numb[i])
 		{
-			if (numb[i] >= 65 && numb[i] <= 90)
-				numb[i] |= (1 << 5);
+			if (numb[i] >= 97 && numb[i] <= 122)
+				numb[i] ^= (1 << 5);
 			i++;
 		}
 	}

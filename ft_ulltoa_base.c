@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:35:31 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 16:24:31 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/09 18:54:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_ulltoa_base(unsigned long long nb, int base)
 	char	*buf;
 	char	rest[17];
 
-	ft_strcpy(rest, "0123456789ABCDEF");
+	ft_strcpy(rest, "0123456789abcdef");
 	len = ft_ullcountint(nb, base);
 	if (!(buf = (char*)malloc(sizeof(char) * (len + 1))))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 21:26:58 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/09 22:33:09 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_printf
 	int			ret;
 	int			length;
 	int			i_buff;
+	int			no_type;
 	char		flags;
 	int			width;
 	int			precision;
@@ -114,5 +115,6 @@ uintmax_t	ft_handle_uhexasize(t_printf *elem, va_list ap);
 int			ft_param_hexa(t_printf* elem, va_list ap);
 int			ft_paddoct_null(t_printf *elem, t_nbcaddpw *nbca);
 int			ft_param_address(t_printf *elem, va_list ap);
+void		ft_handle_notype(t_printf *elem, const char *format);
 
 #endif

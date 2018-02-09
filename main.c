@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 21:05:04 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 00:19:29 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	main(void)
 {
-	char	*str;
-
-	str = malloc(58);
-	printf("\nret %d\n", printf("|%S|", NULL));
-	printf("\nret %d\n", ft_printf("|%S|", NULL));
+	printf("\nret %d\n", printf("%%%0004%"));
+	printf("\nret %d\n", ft_printf("%%%0004%"));
 	return (0);
 }

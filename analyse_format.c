@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 15:08:13 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 00:35:00 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 int		ft_analyse_speconversion(t_printf *elem, const char *format)
 {
-	int	index;
+	int	i;
 
-	index = 1;
-	while (!(elem->type = ft_char_is_type(format[index])) && format[index])
+	i = 1;
+	while (!(elem->type = ft_char_is_type(format[i])) && format[i])
 	{
-		if (format[index] == '-' || format[index] == '+' || format[index] == '0'
-				|| format[index] == '#' || format[index] == ' ')
+		if (format[i] == '-' || format[i] == '+' || format[i] == '0'
+				|| format[i] == '#' || format[i] == ' ')
 		{
-			ft_deal_flags(elem, &format[index]);
-			index++;
+			ft_deal_flags(elem, &format[i]);
+			i++;
 		}
-		else if (format[index] == '.')
-			index = index + ft_deal_precision(elem, &format[index]);
-		else if (ft_isdigit(format[index]))
-			index = index + ft_deal_width(elem, &format[index]);
-		else if (ft_strchr("lhjz", format[index]))
-			index = index + ft_deal_size(elem, &format[index]);
+		else if (format[i] == '.')
+			i = i + ft_deal_precision(elem, &format[i]);
+		else if (ft_isdigit(format[i]))
+			i = i + ft_deal_width(elem, &format[i]);
+		else if (ft_strchr("lhjz", format[i]))
+			i = i + ft_deal_size(elem, &format[i]);
 		else
-			index++;
+		{
+			elem->no_type = !(elem->no_type) ? i : elem->no_type;
+			i++;
+		}
 	}
-	return (index);
+	(!(format[i]) || elem->type == '%') ? ft_handle_notype(elem, format) : 0;
+	return (!(format[i]) ? i - 1 : i);
 }
 
 int		ft_read_format(const char *format, va_list ap, t_printf *elem)
@@ -52,6 +56,7 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 				write (1, elem->buff, elem->save);
 				return (-1);
 			}
+			elem->no_type = '0';
 			elem->save = elem->i_buff;
 			elem->width = 0;
 			elem->flags = '\0';
@@ -82,13 +87,4 @@ char	ft_char_is_type(char c)
 	if (c == '%')
 		return (c);
 	return ('\0');
-}
-
-void	ft_argis_str(va_list ap, t_printf *elem)
-{
-	char	*arg;
-
-	arg = va_arg(ap, char*);
-	ft_strcpy(&elem->buff[elem->i_buff], arg);
-	elem->i_buff = elem->i_buff + ft_strlen(arg);
 }

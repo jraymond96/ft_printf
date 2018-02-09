@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:24:48 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 18:26:09 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/09 19:18:52 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_hexa_len(unsigned long arg)
 	int	len;
 	
 	len = 2;
+	if (!arg)
+		return (3);
 	while(arg)
 	{
 		arg /= 16;
