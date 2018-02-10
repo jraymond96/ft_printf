@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 00:35:00 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 15:34:23 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format)
 		}
 	}
 	(!(format[i]) || elem->type == '%') ? ft_handle_notype(elem, format) : 0;
-	return (!(format[i]) ? i - 1 : i);
+	return ((!(format[i]) || (elem->type == '%' && format[i] != '%') || (elem->no_type && format[i] == '%')) ? i - 1 : i);
 }
 
 int		ft_read_format(const char *format, va_list ap, t_printf *elem)
@@ -56,7 +56,7 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 				write (1, elem->buff, elem->save);
 				return (-1);
 			}
-			elem->no_type = '0';
+			elem->no_type = 0;
 			elem->save = elem->i_buff;
 			elem->width = 0;
 			elem->flags = '\0';

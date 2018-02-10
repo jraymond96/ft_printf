@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:24:48 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/09 19:18:52 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 17:51:55 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	ft_padd_numbaddr(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 	}
 }
 
-int	ft_hexa_len(unsigned long arg)
+int		ft_hexa_len(unsigned long arg, t_printf *elem)
 {
 	int	len;
 	
-	len = 2;
-	if (!arg)
-		return (3);
+	len = 0;
+	if (!(arg))
+		return ((elem->flags & PRECI && elem->precision == 0) ? 2 : 3);
 	while(arg)
 	{
 		arg /= 16;
@@ -52,16 +52,48 @@ int	ft_hexa_len(unsigned long arg)
 	return (len);
 }
 
-int	ft_param_address(t_printf *elem, va_list ap)
+void	ft_nbcadd_nulladdr(t_printf *elem, t_nbcaddpw *nbca, int len, char *numb)
+{
+	ft_bzero(nbca, sizeof(t_nbcaddpw));
+	if (elem->flags & PRECI)
+	{
+		*numb = !(elem->precision) ? '\0' : '0';
+		nbca->preci = (elem->precision) ? (elem->precision - 1) : 0;
+	}
+	if (elem->flags & ZERO && elem->width)
+		nbca->preci = (elem->width <= len) ? 0 : (elem->width - len);
+	else if (elem->width)
+		nbca->width = (elem->width <= len) ? 0 : (elem->width - len);
+}
+
+void	ft_nbcadd_addr(t_printf *elem, t_nbcaddpw *nbca, int len)
+{
+	int	size;
+
+	ft_bzero(nbca, sizeof(t_nbcaddpw));
+	if (elem->flags & PRECI)
+		nbca->preci = (elem->precision <= len) ? 0 : (elem->precision - len);
+	if (elem->width)
+	{
+		size = (len + 2) + nbca->preci;
+		nbca->width = (elem->width <= size) ? 0 : (elem->width - size);
+	}
+}
+
+int		ft_param_address(t_printf *elem, va_list ap)
 {
 	unsigned long	arg;
 	char		*numb;
 	t_nbcaddpw	nbca;
+	int			len;
 
-	elem->flags &= 4;
 	arg = va_arg(ap, unsigned long);
+	len = ft_hexa_len(arg, elem);
 	numb = ft_ulltoa_base(arg, 16);
-	nb_c_add_pw(&nbca, elem, ft_hexa_len(arg), numb);
+	if (!(arg))
+		ft_nbcadd_nulladdr(elem, &nbca, len, numb);
+	else
+		ft_nbcadd_addr(elem, &nbca, len);
 	ft_padd_numbaddr(elem, &nbca, numb);
 	ft_memdel((void *)&numb);
 	return (0);

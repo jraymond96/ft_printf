@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:14:02 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 00:25:03 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 15:33:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	ft_handle_notype(t_printf *elem, const char *format)
 
 	sp = ' ';
 	zero = '0';
-	printf("no_type : %d\n", elem->no_type);
+	if (elem->no_type == 0 && !elem->type)
+		return ;
 	if (format[elem->no_type] == '%')
 	{
 		ft_param_percent(elem);
@@ -47,7 +48,7 @@ void	ft_handle_notype(t_printf *elem, const char *format)
 	{
 		ft_handle_overflow(elem, (void *)&format[elem->no_type], 1, 1);
 		ft_handle_overflow(elem, &sp, elem->width, 1);
-		ft_handle_overflow(elem, (void *)&format[elem->no_type], nb, 2);
+		ft_handle_overflow(elem, (void *)&format[++elem->no_type], nb, 2);
 	}
 	else if (elem->flags & ZERO || !(elem->flags & MINUS))
 	{

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/01/31 15:30:06 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:52:02 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,15 @@ int		ft_handle_unicode(t_printf *elem, va_list ap)
 
 	nb = 0;
 	i = -1;
-	unicode = va_arg(ap, wchar_t*);
+	if (!(unicode = va_arg(ap, wchar_t*)))
+	{
+		nb = ft_howchar_add(elem, 6);
+		if (elem->flags & ZERO || !(elem->flags & MINUS))
+			ft_addstr_no_minus(elem, "(null)", nb);
+		else
+			ft_addstr_with_minus(elem, "(null)", nb);
+		return (0);
+	}
 	ft_bzero(str, 5);
 	if ((nbuni_print = ft_howunicode_print(elem, unicode, &nb)) == -1)
 		return (-1);
