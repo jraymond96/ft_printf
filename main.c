@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 18:51:38 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/10 21:13:25 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	printf("\nret %d\n", printf("{% S}", NULL));
-	printf("\nret %d\n", ft_printf("{% S}", NULL));
+	printf("\nret %d\n", printf("% hZ%"));
+	printf("\nret %d\n", ft_printf("% hZ%"));
 	return (0);
 }
