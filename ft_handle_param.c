@@ -100,17 +100,17 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 	res = 0;
 	if (elem->type == 's' || elem->type == 'S')
 		res = ft_param_string(elem, ap);
-	if (elem->type == 'c' || elem->type == 'C')
+	else if(elem->type == 'c' || elem->type == 'C')
 		res = ft_param_char(elem, ap);
-	if (elem->type == 'd' || elem->type == 'D' || elem->type == 'i')
+	else if (elem->type == 'd' || elem->type == 'D' || elem->type == 'i')
 		res = ft_param_decimal(elem, ap);
-	if (elem->type == 'u' || elem->type == 'U')
+	else if (elem->type == 'u' || elem->type == 'U')
 		res = ft_param_unsigned(elem, ap);
-	if (elem->type == 'o' || elem->type == 'O')
+	else if (elem->type == 'o' || elem->type == 'O')
 		res = ft_param_octal(elem, ap);
-	if (elem->type == 'x' || elem->type == 'X')
+	else if (elem->type == 'x' || elem->type == 'X')
 		res = ft_param_hexa(elem, ap);
-	if (elem->type == 'p')
+	else if (elem->type == 'p')
 		res = ft_param_address(elem, ap);
 	return (res);
 }

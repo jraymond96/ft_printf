@@ -14,7 +14,10 @@
 
 int	main(void)
 {
-	printf("\nret %d\n", printf("% hZ%"));
+	printf("\nret %d\n", printf("\e[1;31m% hZ"));
 	printf("\nret %d\n", ft_printf("% hZ%"));
+	return (0);
+	write(1 ,"\e[3", 3);
+	write(1, "mtiti\n", 6);
 	return (0);
 }

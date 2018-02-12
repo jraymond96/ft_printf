@@ -52,7 +52,13 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 		if (format[i] == '%')
 		{
 			i += ft_analyse_speconversion(elem, &format[i]);
-			if (ft_handle_param(elem, ap) == -1)
+			if (elem->type == '{')
+			{
+				ft_param_color(elem, format[++i]);
+				while (format[i] != '}')
+					i++;
+			}
+			else if (ft_handle_param(elem, ap) == -1)
 			{
 				write (1, elem->buff, elem->save);
 				return (-1);
@@ -74,19 +80,21 @@ char	ft_char_is_type(char c)
 {
 	if (c == 's' || c == 'S')
 		return (c);
-	if (c == 'c' || c == 'C')
+	else if (c == 'c' || c == 'C')
 		return (c);
-	if (c == 'd' || c == 'D' || c == 'i')
+	else if (c == 'd' || c == 'D' || c == 'i')
 		return (c);
-	if (c == 'u' || c == 'U')
+	else if (c == 'u' || c == 'U')
 		return (c);
-	if (c == 'o' || c == 'O')
+	else if (c == 'o' || c == 'O')
 		return (c);
-	if (c == 'x' || c == 'X')
+	else if (c == 'x' || c == 'X')
 		return (c);
-	if (c == 'p')
+	else if (c == 'p')
 		return (c);
-	if (c == '%')
+	else if (c == '%')
+		return (c);
+	else if (c == '{')
 		return (c);
 	return ('\0');
 }

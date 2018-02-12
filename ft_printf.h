@@ -22,6 +22,13 @@
 # define BUFF_SIZE 128
 
 /*
+** ------------COLORS------------
+*/
+/*
+** ------------------------------
+*/
+
+/*
 ** ----------MASK-FLAGS----------
 */
 
@@ -116,5 +123,6 @@ int			ft_param_hexa(t_printf* elem, va_list ap);
 int			ft_paddoct_null(t_printf *elem, t_nbcaddpw *nbca);
 int			ft_param_address(t_printf *elem, va_list ap);
 int			ft_handle_notype(t_printf *elem, const char *format);
+void			ft_param_color(t_printf *elem, const char *format);
 
 #endif

@@ -1,0 +1,4 @@
+flags + : surligner; (7)
+flags 0 : souligner; (4)
+flags # : GRAS; (1)
+%flags{couleur/text,couleur/background};

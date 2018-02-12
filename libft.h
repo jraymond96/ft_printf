@@ -97,5 +97,6 @@ char					*ft_itoa_base(int nb, int base);
 int						ft_abs(int nb);
 long long				ft_llabs(long long nb);
 char					*ft_ulltoa_base(unsigned long long nb, int base);
+char	*ft_strcchr(const char *s, int c, char stop);
 
 #endif

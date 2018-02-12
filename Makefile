@@ -99,7 +99,9 @@ SRCS = ft_memset.c \
 				ft_param_octal.c \
 				ft_ulltoa_base.c \
 				ft_param_hexa.c \
-				ft_param_address.c
+				ft_param_address.c \
+				ft_strcchr.c \
+				ft_param_color.c
 
 OBJ = $(SRCS:.c=.o)
 
