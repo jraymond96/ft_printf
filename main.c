@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 21:13:25 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 00:34:16 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int	main(void)
 {
-	printf("\nret %d\n", printf("\e[1;31m% hZ"));
-	printf("\nret %d\n", ft_printf("% hZ%"));
+	//printf("\nret %d\n", printf("\e[1;31m% hZ"));
+	printf("\nret %d\n", ft_printf("%{cyan}% hZ%"));
 	return (0);
-	write(1 ,"\e[3", 3);
-	write(1, "mtiti\n", 6);
+	write(1 ,"\e[36msalut", 10);
 	return (0);
 }

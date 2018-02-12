@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 21:49:04 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 00:03:53 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 			i += ft_analyse_speconversion(elem, &format[i]);
 			if (elem->type == '{')
 			{
-				ft_param_color(elem, format[++i]);
+				ft_param_color(elem, &format[++i]);
 				while (format[i] != '}')
 					i++;
 			}
