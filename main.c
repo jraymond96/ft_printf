@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 23:49:23 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 23:58:22 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 int	main(void)
 {
-	int	n;
-
-	n = 0;
-	printf("ret : %d\n", printf("{%*d}", -5, 42));
-	printf("ret : %d\n", ft_printf("coucou %n{%*d}", &n, -5, 42));
-	printf("n : %d\n", n);
-	return (0);
-	write(1 ,"\e[36msalut", 10);
+	printf("ret : %d\n", ft_printf("%hb", 42));
 	return (0);
 }
