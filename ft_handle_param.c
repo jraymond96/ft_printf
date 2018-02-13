@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 19:17:46 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 23:45:58 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,9 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 		res = ft_param_hexa(elem, ap);
 	else if (elem->type == 'p')
 		res = ft_param_address(elem, ap);
+	else if (elem->type == 'b')
+		res = ft_param_binary(elem, ap);
+	else if (elem->type == 'n')
+		ft_param_n(elem, ap);
 	return (res);
 }

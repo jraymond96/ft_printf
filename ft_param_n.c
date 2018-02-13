@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_param_n.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/30 15:26:10 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 23:49:23 by jraymond         ###   ########.fr       */
+/*   Created: 2018/02/13 23:43:02 by jraymond          #+#    #+#             */
+/*   Updated: 2018/02/13 23:45:01 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+void	ft_param_n(t_printf *elem, va_list ap)
 {
-	int	n;
+	int	*n;
 
-	n = 0;
-	printf("ret : %d\n", printf("{%*d}", -5, 42));
-	printf("ret : %d\n", ft_printf("coucou %n{%*d}", &n, -5, 42));
-	printf("n : %d\n", n);
-	return (0);
-	write(1 ,"\e[36msalut", 10);
-	return (0);
+	n = va_arg(ap, int *);
+	*n = (elem->i_buff + elem->ret);
 }

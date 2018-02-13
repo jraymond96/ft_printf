@@ -6,7 +6,9 @@ flags # : GRAS; (1)
 -wildcard
 
 -%b
-
 -h : char
+-hh : short
+-l : int
+-ll : unsigned
 
--
+-%n

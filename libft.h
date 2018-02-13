@@ -6,7 +6,7 @@
 /*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 18:29:51 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 16:07:46 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 22:22:03 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,6 @@ char					*ft_itoa_base(int nb, int base);
 int						ft_abs(int nb);
 long long				ft_llabs(long long nb);
 char					*ft_ulltoa_base(unsigned long long nb, int base);
-char	*ft_strcchr(const char *s, int c, char stop);
+char					*ft_strcchr(const char *s, int c, char stop);
 
 #endif

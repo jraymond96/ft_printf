@@ -6,26 +6,52 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 22:56:59 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 20:35:47 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 23:11:54 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-#define CHAR (1 << i)
-
-int		ft_print_binary(void *binary, int size)
+int		ft_print_binary(t_printf *elem, long long  binary, int size)
 {
-	int	i;
+	int		i;
+	char	bin[73];
+	int		x;
 
-	i = size * 4;
+	x = 0;
+	ft_bzero(bin, 73);
+	i = (size * 8 - 1);
 	while (i >= 0)
 	{
 		if (!((i + 1) % 4))
-			ft_putchar('|');
-		binary & CHAR ? ft_putnbr(1) : ft_putnbr(0);
+			bin[x++] = '|';
+		bin[x] = binary & BINARY ? '1' : '0';
 		i--;
+		x++;
 	}
-	ft_putchar('\n');
+	bin[x] = '\n';
+	ft_handle_overflow(elem, bin, ft_strlen(bin), 2);
+	return (0);
+}
+
+int		ft_print_ubinary(t_printf *elem, unsigned long long  binary, int size)
+{
+	int		i;
+	char	bin[73];
+	int		x;
+
+	x = 0;
+	ft_bzero(bin, 73);
+	i = (size * 8 - 1);
+	while (i >= 0)
+	{
+		if (!((i + 1) % 4))
+			bin[x++] = '|';
+		bin[x] = binary & BINARY ? '1' : '0';
+		i--;
+		x++;
+	}
+	bin[x] = '\n';
+	ft_handle_overflow(elem, bin, ft_strlen(bin), 2);
 	return (0);
 }

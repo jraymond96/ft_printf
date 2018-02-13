@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/02/12 23:58:36 by jraymond         ###   ########.fr        #
+#    Updated: 2018/02/13 23:48:22 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,9 @@ SRCS = ft_memset.c \
 				ft_param_hexa.c \
 				ft_param_address.c \
 				ft_strcchr.c \
-				ft_param_color.c
+				ft_param_color.c \
+				ft_param_binary.c \
+				ft_param_n.c
 
 OBJ = $(SRCS:.c=.o)
 
