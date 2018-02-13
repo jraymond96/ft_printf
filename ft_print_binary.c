@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 22:56:59 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 17:56:22 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:35:47 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 #define CHAR (1 << i)
 
-int		ft_print_binary(char binary)
+int		ft_print_binary(void *binary, int size)
 {
 	int	i;
 
-	i = 7;
+	i = size * 4;
 	while (i >= 0)
 	{
 		if (!((i + 1) % 4))

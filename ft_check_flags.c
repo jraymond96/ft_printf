@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 22:56:38 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 17:34:27 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 19:33:56 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_deal_flags(t_printf *elem, const char *format)
 		elem->flags |= SPACE;
 }
 
-int		ft_deal_precision(t_printf *elem, const char *format)
+int		ft_deal_precision(t_printf *elem, const char *format, va_list ap)
 {
 	int	i;
 	int	res;
@@ -36,26 +36,46 @@ int		ft_deal_precision(t_printf *elem, const char *format)
 	elem->flags |= PRECI;
 	while (format[i] == '.' && format[i])
 		i++;
-	while (ft_isdigit(format[i]) && format[i])
+	if (format[i] == '*')
 	{
-		res = res * 10 + (format[i] - '0');
 		i++;
+		if ((res = va_arg(ap, int)) < 0)
+		{
+			res = 0;
+			elem->flags ^= PRECI;
+		}
+	}
+	else
+	{
+		while (ft_isdigit(format[i]) && format[i])
+			res = res * 10 + (format[i++] - '0');
 	}
 	elem->precision = res;
 	return (i);
 }
 
-int		ft_deal_width(t_printf *elem, const char *format)
+int		ft_deal_width(t_printf *elem, const char *format, va_list ap)
 {
 	int	i;
 	int	res;
 
 	i = 0;
 	res = 0;
-	while (ft_isdigit(format[i]) && format[i])
+	if (format[i] == '*')
 	{
-		res = res * 10 + (format[i] - '0');
 		i++;
+		res = va_arg(ap, int);
+		if (res < 0)
+			elem->flags |= !(elem->flags & MINUS) ? MINUS : (0 << 2);
+		res = ft_abs(res);
+	}
+	else
+	{
+		while (ft_isdigit(format[i]) && format[i])
+		{
+			res = res * 10 + (format[i] - '0');
+			i++;
+		}
 	}
 	elem->width = res;
 	return (i);

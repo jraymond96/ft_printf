@@ -6,13 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 17:17:09 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 19:29:07 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_analyse_speconversion(t_printf *elem, const char *format)
+int		ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
 {
 	int	i;
 
@@ -23,9 +23,9 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format)
 				|| format[i] == '#' || format[i] == ' ')
 			ft_deal_flags(elem, &format[i++]);
 		else if (format[i] == '.')
-			i = i + ft_deal_precision(elem, &format[i]);
-		else if (ft_isdigit(format[i]))
-			i = i + ft_deal_width(elem, &format[i]);
+			i = i + ft_deal_precision(elem, &format[i], ap);
+		else if (ft_isdigit(format[i]) || format[i] == '*')
+			i = i + ft_deal_width(elem, &format[i], ap);
 		else if (ft_strchr("lhjz", format[i]))
 			i += ft_deal_size(elem, &format[i]);
 		else
@@ -48,7 +48,7 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 	{
 		if (format[i] == '%')
 		{
-			i += ft_analyse_speconversion(elem, &format[i]);
+			i += ft_analyse_speconversion(elem, &format[i], ap);
 			if (elem->type == '{')
 			{
 				ft_param_color(elem, &format[++i]);

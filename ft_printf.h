@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 16:00:46 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 18:38:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void		ft_argis_str(va_list ap, t_printf *elem);
 int			ft_print_binary(char binary);
 void		ft_init_struct(t_printf *elem);
 void		ft_deal_flags(t_printf *elem, const char *format);
-int			ft_deal_precision(t_printf *elem, const char *format);
-int			ft_deal_width(t_printf *elem, const char *format);
+int			ft_deal_precision(t_printf *elem, const char *format, va_list ap);
+int			ft_deal_width(t_printf *elem, const char *format, va_list ap);
 int			ft_deal_size(t_printf *elem, const char *format);
 int			ft_handle_param(t_printf *elem, va_list ap);
 int			ft_handle_unicode(t_printf *elem, va_list ap);
