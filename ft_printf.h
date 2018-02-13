@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 21:10:10 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 16:00:46 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,7 @@
 # define BUFF_SIZE 128
 
 /*
-** ------------COLORS------------
-*/
-/*
-** ------------------------------
-*/
-
-/*
-** ----------MASK-FLAGS----------
+**----------MASK-FLAGS----------
 */
 
 # define ZERO (1 << 0)
@@ -40,11 +33,11 @@
 # define PRECI (1 << 5)
 
 /*
-** ------------------------------
+**------------------------------
 */
 
 /*
- ** ----------MASK-SIZE----------
+ **----------MASK-SIZE----------
  */
 
 # define HH (1 << 0)
@@ -55,7 +48,7 @@
 # define J (1 << 5)
 
 /*
- ** -----------------------------
+ **-----------------------------
  */
 
 typedef struct	s_overflow
@@ -64,6 +57,12 @@ typedef struct	s_overflow
 	char		*data_b;
 	int			flag;
 }				t_overflow;
+
+typedef struct s_color
+{
+	char		*name;
+	char		code;
+}				t_color;
 
 typedef struct	s_printf
 {

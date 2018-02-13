@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 23:09:39 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 00:35:14 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 16:34:52 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,33 @@ int	ft_howc(const char *format)
 
 	nb = 0;
 	i = 0;
-	while (format[i] && (format[i] != '}' || format[i] != ','))
+	while (format[i] && format[i] != '}' && format[i] != ',')
 	{
 		i++;
 		nb++;
 	}
-	return (++nb);
+	return (nb);
 }
+
+static const t_color g_colors[] = {
+	{"black", '0'}, {"red", '1'}, {"green", '2'}, {"yellow", '3'},
+	{"blue", '4'}, {"magenta", '5'}, {"cyan", '6'}, {"white", '7'}
+};
+static const size_t g_colors_size = sizeof(g_colors) / sizeof(t_color);
 
 char	ft_what_color(const char *format)
 {
 	int	nb;
 
 	nb = ft_howc(format);
-	ft_putstr(format);
-	ft_putnbr(nb);
-	if (!(ft_strncmp(format, "black", nb)))
-		return ('0');
-	else if (!(ft_strncmp(format, "red", nb)))
-		return ('1');
-	else if (!(ft_strncmp(format, "green", nb)))
-		return ('2');
-	else if (!(ft_strncmp(format, "pink", nb)))
-		return ('3');
-	else if (!(ft_strncmp(format, "blue", nb)))
-		return ('4');
-	else if (!(ft_strncmp(format, "yellow", nb)))
-		return ('5');
-	else if (!(ft_strncmp(format, "cyan", nb)))
-		return ('6');
-	else
-		return ('7');
+	size_t	i = 0;
+	while (i < g_colors_size)
+	{
+		if (!(strncmp(format, g_colors[i].name, nb)))
+			return (g_colors[i].code);
+		++i;
+	}
+	return('7');
 }
 
 void	ft_buffer_color(char *code_color, t_printf *elem)
@@ -69,50 +65,37 @@ void	ft_buffer_color(char *code_color, t_printf *elem)
 	
 }
 
+char	*ft_fill_code_color(char *code_color, char color, char sharp)
+{
+	*code_color = color;
+	code_color++;
+	*code_color = sharp;
+	code_color++;
+	return (code_color);
+}
+
 void	ft_param_color(t_printf *elem, const char *format)
 {
 	char	*back_color;
 	char	*code_color;
 	char	*tmp;
 
-	ft_putstr("test\n");
 	(!(code_color = ft_memalloc(14))) ? exit (1) : 0;
 	tmp = code_color;
-	ft_strcpy(code_color, "i[");
+	ft_strcpy(code_color, "\e[");
 	code_color += 2;
 	if (elem->flags & MORE)
-	{
-		*code_color = '7';
-		code_color++;
-		*code_color = ';';
-		code_color++;
-	}
+		code_color = ft_fill_code_color(code_color, '7', ';');
 	if (elem->flags & ZERO)
-	{
-		*code_color = '4';
-		code_color++;
-		*code_color = ';';
-		code_color++;
-	}
-	if (elem->flags & SHARP)
-	{
-		*code_color = '1';
-		code_color++;
-		*code_color = ';';
-		code_color++;
-	}
-	*code_color = '3';
-	code_color++;
-	*code_color = ft_what_color(format);
-	code_color++;
+		code_color = ft_fill_code_color(code_color, '4', ';');
+	if (elem->flags & SHARP)	
+		code_color = ft_fill_code_color(code_color, '1', ';');
+	code_color = ft_fill_code_color(code_color, '3', ft_what_color(format));
 	if ((back_color = ft_strcchr(format, ',', '}')))
 	{
 		*code_color = ';';
 		code_color++;
-		*code_color = '4';
-		code_color++;
-		*code_color = ft_what_color(++back_color);
-		code_color++;
+		code_color = ft_fill_code_color(code_color, '4', ft_what_color(++back_color));
 	}
 	*code_color = 'm';
 	ft_buffer_color(tmp, elem);

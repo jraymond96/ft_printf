@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 00:03:53 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/13 17:17:09 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format)
 	{
 		if (format[i] == '-' || format[i] == '+' || format[i] == '0'
 				|| format[i] == '#' || format[i] == ' ')
-		{
-			ft_deal_flags(elem, &format[i]);
-			i++;
-		}
+			ft_deal_flags(elem, &format[i++]);
 		else if (format[i] == '.')
 			i = i + ft_deal_precision(elem, &format[i]);
 		else if (ft_isdigit(format[i]))
 			i = i + ft_deal_width(elem, &format[i]);
 		else if (ft_strchr("lhjz", format[i]))
-			i = i + ft_deal_size(elem, &format[i]);
+			i += ft_deal_size(elem, &format[i]);
 		else
 		{
 			elem->no_type = !(elem->no_type) ? i : elem->no_type;
