@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/02/14 19:24:18 by jraymond         ###   ########.fr        #
+#    Updated: 2018/02/14 22:22:33 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,22 +56,32 @@ SRCS = ft_memset.c \
 				ft_param_n.c \
 				ft_padd_numposi_nega.c
 
+#COLORS
+_CYAN=\x1b[36m
+_GREEN=\x1b[32m
+_YELLOW=\x1b[33m
+_RED=\x1b[31m
+_END=\x1b[0m
+
 OBJ = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-		$(CC) $(FLAGS) -c $(SRCS)
-		ar rc $(NAME) $(OBJ)
-		ranlib $(NAME)
+		@$(CC) $(FLAGS) -c $(SRCS)
+		@ar rc $(NAME) $(OBJ)
+		@ranlib $(NAME)
+		@echo "$(_GREEN)$(NAME) created$(_END)"
 
 %.o : %.c
-	$(CC) $(FLAGS) -o $@ -c $^
+	@$(CC) $(FLAGS) -o $@ -c $^
 
 clean :
-		rm -rf $(OBJ)
+		@rm -rf $(OBJ)
+		@echo "$(_RED)clean->OBJ $(_END):$(_GREEN) Done$(_END)"
 
 fclean : clean
-		rm -rf $(NAME)
+		@rm -rf $(NAME)
+		@echo "$(_RED)clean->$(NAME) $(_END):$(_GREEN) Done$(_END)"
 
 re : fclean all
