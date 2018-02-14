@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 14:49:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 21:26:48 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:29:04 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	nb_c_addoct_pw(t_nbcaddpw *nbca, t_printf *elem, int intl)
 	{
 		if (elem->flags & SHARP)
 			i++;
-		nbca->width = (elem->width <= (i + intl)) ? 0 : elem->width - (i + intl);
+		if (elem->width <= (i + intl))
+			nbca->width = 0;
+		else
+			nbca->width = elem->width - (i + intl);
 	}
 }
 
@@ -55,6 +58,7 @@ void	ft_padding_numb(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 		ft_handle_overflow(elem, &sp, nbca->width, 1);
 	}
 }
+
 void	ft_handle_sharp(t_nbcaddpw *nbca, t_printf *elem, unsigned long long nb)
 {
 	if (elem->flags & SHARP && elem->flags & MINUS && nb != 0)

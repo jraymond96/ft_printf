@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:59:58 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 23:45:14 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:21:01 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,19 @@ int		ft_analyse_speconversion(t_printf *elem, const char *format, va_list ap)
 		}
 	}
 	(elem->type == '%') ? ft_handle_notype(elem, format) : 0;
-	return ((!(format[i]) || (elem->type == '%' && format[i] != '%') || (elem->no_type && format[i] == '%')) ? i - 1 : i);
+	if (!(format[i]) || (elem->type == '%' && format[i] != '%'))
+		i--;
+	return (i = (elem->no_type && format[i] == '%') ? i - 1 : i);
+}
+
+void	ft_zero(t_printf *elem)
+{
+	elem->no_type = 0;
+	elem->type = '0';
+	elem->save = elem->i_buff;
+	elem->width = 0;
+	elem->flags = '\0';
+	elem->size = '\0';
 }
 
 int		ft_read_format(const char *format, va_list ap, t_printf *elem)
@@ -57,15 +69,10 @@ int		ft_read_format(const char *format, va_list ap, t_printf *elem)
 			}
 			else if (ft_handle_param(elem, ap) == -1)
 			{
-				write (1, elem->buff, elem->save);
+				write(1, elem->buff, elem->save);
 				return (-1);
 			}
-			elem->no_type = 0;
-			elem->type = '0';
-			elem->save = elem->i_buff;
-			elem->width = 0;
-			elem->flags = '\0';
-			elem->size = '\0';
+			ft_zero(elem);
 		}
 		else
 			ft_handle_overflow(elem, (void *)&format[i], 1, 1);

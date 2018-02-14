@@ -6,18 +6,18 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 18:24:48 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 17:51:55 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:48:28 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 void	ft_padd_numbaddr(t_printf *elem, t_nbcaddpw *nbca, char *numb)
-{	
+{
 	char	zerox[3];
 	char	sp;
 	char	zero;
-	
+
 	ft_strcpy(zerox, "0x");
 	sp = ' ';
 	zero = '0';
@@ -40,11 +40,11 @@ void	ft_padd_numbaddr(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 int		ft_hexa_len(unsigned long arg, t_printf *elem)
 {
 	int	len;
-	
+
 	len = 0;
 	if (!(arg))
 		return ((elem->flags & PRECI && elem->precision == 0) ? 2 : 3);
-	while(arg)
+	while (arg)
 	{
 		arg /= 16;
 		len++;
@@ -52,7 +52,7 @@ int		ft_hexa_len(unsigned long arg, t_printf *elem)
 	return (len);
 }
 
-void	ft_nbcadd_nulladdr(t_printf *elem, t_nbcaddpw *nbca, int len, char *numb)
+void	ft_nulladdr(t_printf *elem, t_nbcaddpw *nbca, int len, char *numb)
 {
 	ft_bzero(nbca, sizeof(t_nbcaddpw));
 	if (elem->flags & PRECI)
@@ -83,15 +83,15 @@ void	ft_nbcadd_addr(t_printf *elem, t_nbcaddpw *nbca, int len)
 int		ft_param_address(t_printf *elem, va_list ap)
 {
 	unsigned long	arg;
-	char		*numb;
-	t_nbcaddpw	nbca;
-	int			len;
+	char			*numb;
+	t_nbcaddpw		nbca;
+	int				len;
 
 	arg = va_arg(ap, unsigned long);
 	len = ft_hexa_len(arg, elem);
 	numb = ft_ulltoa_base(arg, 16);
 	if (!(arg))
-		ft_nbcadd_nulladdr(elem, &nbca, len, numb);
+		ft_nulladdr(elem, &nbca, len, numb);
 	else
 		ft_nbcadd_addr(elem, &nbca, len);
 	ft_padd_numbaddr(elem, &nbca, numb);

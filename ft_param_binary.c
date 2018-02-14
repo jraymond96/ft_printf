@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 21:53:25 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/14 15:45:01 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:49:34 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_ll(t_printf *elem, va_list ap)
 
 int		ft_param_binary(t_printf *elem, va_list ap)
 {
-	unsigned long long 	u_arg;
+	unsigned long long	u_arg;
 
 	if (!(elem->size & LL))
 		ft_ll(elem, ap);

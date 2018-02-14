@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 15:45:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 18:52:02 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:41:11 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ int		ft_howunicode_print(t_printf *elem, wchar_t *unicode, int *nb)
 	return (i);
 }
 
+int		null_uni(t_printf *elem, int nb)
+{
+	nb = ft_howchar_add(elem, 6);
+	if (elem->flags & ZERO || !(elem->flags & MINUS))
+		ft_addstr_no_minus(elem, "(null)", nb);
+	else
+		ft_addstr_with_minus(elem, "(null)", nb);
+	return (0);
+}
+
 int		ft_handle_unicode(t_printf *elem, va_list ap)
 {
 	wchar_t *unicode;
@@ -61,14 +71,7 @@ int		ft_handle_unicode(t_printf *elem, va_list ap)
 	nb = 0;
 	i = -1;
 	if (!(unicode = va_arg(ap, wchar_t*)))
-	{
-		nb = ft_howchar_add(elem, 6);
-		if (elem->flags & ZERO || !(elem->flags & MINUS))
-			ft_addstr_no_minus(elem, "(null)", nb);
-		else
-			ft_addstr_with_minus(elem, "(null)", nb);
-		return (0);
-	}
+		return (null_uni(elem, nb));
 	ft_bzero(str, 5);
 	if ((nbuni_print = ft_howunicode_print(elem, unicode, &nb)) == -1)
 		return (-1);
@@ -82,7 +85,6 @@ int		ft_handle_unicode(t_printf *elem, va_list ap)
 		ft_handle_overflow(elem, str, ft_strlen(str), 2);
 		ft_bzero(str, 5);
 	}
-	if (elem->flags & MINUS && nb)
-		ft_addstr_with_minus(elem, str, nb);
+	(elem->flags & MINUS && nb) ? ft_addstr_with_minus(elem, str, nb) : 0;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 11:14:02 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/10 21:51:52 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:33:53 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ int		ft_countnbcadd(const char *format)
 		i++;
 	}
 	return (nb);
+}
+
+void	ft_no_minus(t_printf *elem, const char *format, int nb)
+{
+	char	sp;
+	char	zero;
+
+	sp = ' ';
+	zero = '0';
+	if (elem->flags & ZERO)
+		ft_handle_overflow(elem, &zero, elem->width, 1);
+	else
+		ft_handle_overflow(elem, &sp, elem->width, 1);
+	ft_handle_overflow(elem, (void *)&format[elem->no_type], (nb + 1), 2);
 }
 
 int		ft_handle_notype(t_printf *elem, const char *format)
@@ -51,13 +65,7 @@ int		ft_handle_notype(t_printf *elem, const char *format)
 		ft_handle_overflow(elem, (void *)&format[++elem->no_type], nb, 2);
 	}
 	else if (elem->flags & ZERO || !(elem->flags & MINUS))
-	{
-		if (elem->flags & ZERO)
-			ft_handle_overflow(elem, &zero, elem->width, 1);
-		else
-			ft_handle_overflow(elem, &sp, elem->width, 1);
-		ft_handle_overflow(elem, (void *)&format[elem->no_type], (nb + 1), 2);
-	}
+		ft_no_minus(elem, format, nb);
 	return (++nb);
 }
 
@@ -75,7 +83,7 @@ int		ft_param_percent(t_printf *elem)
 	if (elem->flags & MINUS)
 	{
 		ft_handle_overflow(elem, &percent, 1, 1);
-		ft_handle_overflow(elem, &space, elem->width, 1);	
+		ft_handle_overflow(elem, &space, elem->width, 1);
 	}
 	else
 	{

@@ -6,11 +6,11 @@
 /*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 13:17:10 by jraymond          #+#    #+#             */
-/*   Updated: 2017/11/16 16:36:01 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:52:00 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 char	*ft_strncat(char *dest, const char *src, size_t n)
 {

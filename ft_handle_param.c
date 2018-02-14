@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:32:30 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 23:45:58 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:26:00 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_param_string(t_printf *elem, va_list ap)
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
 		ft_addstr_no_minus(elem, (char *)str, nb_c_add);
 	else
-		ft_addstr_with_minus(elem, str, nb_c_add);	
+		ft_addstr_with_minus(elem, str, nb_c_add);
 	return (0);
 }
 
@@ -100,7 +100,7 @@ int		ft_handle_param(t_printf *elem, va_list ap)
 	res = 0;
 	if (elem->type == 's' || elem->type == 'S')
 		res = ft_param_string(elem, ap);
-	else if(elem->type == 'c' || elem->type == 'C')
+	else if (elem->type == 'c' || elem->type == 'C')
 		res = ft_param_char(elem, ap);
 	else if (elem->type == 'd' || elem->type == 'D' || elem->type == 'i')
 		res = ft_param_decimal(elem, ap);

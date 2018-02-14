@@ -6,11 +6,11 @@
 /*   By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 21:20:24 by jraymond          #+#    #+#             */
-/*   Updated: 2017/11/16 16:35:20 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:51:42 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {

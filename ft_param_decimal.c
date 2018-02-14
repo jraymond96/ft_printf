@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:59:02 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/13 19:29:03 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:15:27 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	nb_c_add_pw(t_nbcaddpw *nbca, t_printf *elem, int intl, char *numb)
 	{
 		if (elem->flags & MORE || elem->flags & SPACE || numb[0] == '-')
 			i++;
-		nbca->width = (elem->width <= (i + intl)) ? 0 : elem->width - (i + intl);
+		if (elem->width <= (i + intl))
+			nbca->width = 0;
+		else
+			nbca->width = elem->width - (i + intl);
 	}
 }
 
@@ -62,16 +65,7 @@ void	ft_padding_numbposi(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 	more = '+';
 	zero = '0';
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
-	{
-		if (!(elem->flags & ZERO))
-			ft_handle_overflow(elem, &sp, nbca->width, 1);
-		else
-			ft_handle_overflow(elem, &zero, nbca->width, 1);
-		if (elem->flags & MORE)
-			ft_handle_overflow(elem, &more, 1, 1);
-		ft_handle_overflow(elem, &zero, nbca->preci, 1);
-		ft_handle_overflow(elem, numb, ft_strlen(numb), 2);
-	}
+		ft_posi_no_minus(elem, nbca, numb);
 	else
 	{
 		if (elem->flags & MORE)
@@ -86,25 +80,11 @@ void	ft_padding_numbneg(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 {
 	char	sp;
 	char	zero;
-	
+
 	sp = ' ';
 	zero = '0';
 	if (elem->flags & ZERO || !(elem->flags & MINUS))
-	{	
-		if (!(elem->flags & ZERO))
-		{
-			ft_handle_overflow(elem, &sp, nbca->width, 1);
-			ft_handle_overflow(elem, &numb[0], 1, 1);
-		}
-		else
-		{
-			ft_handle_overflow(elem, &numb[0], 1, 1);
-			ft_handle_overflow(elem, &zero, nbca->width, 1);
-		}
-		numb++;
-		ft_handle_overflow(elem, &zero, nbca->preci, 1);
-		ft_handle_overflow(elem, numb, ft_strlen(numb), 2);
-	}
+		ft_neg_no_minus(elem, nbca, numb);
 	else
 	{
 		ft_handle_overflow(elem, &numb[0], 1, 1);
@@ -120,7 +100,7 @@ int		ft_param_decimal(t_printf *elem, va_list ap)
 	intmax_t	arg;
 	char		*numb;
 	t_nbcaddpw	nbca;
-	
+
 	arg = ft_handle_size(elem, ap);
 	numb = ft_lltoa(arg);
 	if (elem->flags & ZERO && (elem->flags & MINUS || elem->flags & PRECI))

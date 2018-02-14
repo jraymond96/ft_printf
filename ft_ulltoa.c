@@ -6,11 +6,11 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 15:05:41 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/07 16:25:06 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:36:50 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int		ft_countull(unsigned long long n)
 {
@@ -27,7 +27,7 @@ int		ft_countull(unsigned long long n)
 	return (len++);
 }
 
-char			*ft_ulltoa(unsigned long long n)
+char	*ft_ulltoa(unsigned long long n)
 {
 	int					len;
 	char				*buf;

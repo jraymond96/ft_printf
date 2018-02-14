@@ -6,14 +6,14 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 16:12:57 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 21:29:27 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:43:48 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 void	ft_padding_numbnull(t_printf *elem, t_nbcaddpw *nbca)
-{	
+{
 	char	sp;
 	char	more;
 
@@ -55,7 +55,7 @@ int		ft_paddoct_null(t_printf *elem, t_nbcaddpw *nbca)
 {
 	char	sp;
 	char	zero;
-	
+
 	sp = ' ';
 	zero = '0';
 	nb_c_addoctnull_pw(nbca, elem);

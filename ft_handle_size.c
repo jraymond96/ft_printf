@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 12:31:09 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/08 12:57:42 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 17:28:50 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ uintmax_t	ft_handle_uoctsize(t_printf *elem, va_list ap)
 		arg = va_arg(ap, unsigned);
 	return (arg);
 }
-
 
 uintmax_t	ft_handle_uhexasize(t_printf *elem, va_list ap)
 {

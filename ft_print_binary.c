@@ -6,13 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 22:56:59 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/14 15:23:38 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/02/14 18:35:36 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_print_binary(t_printf *elem, long long  binary, int size)
+int		ft_print_binary(t_printf *elem, long long binary, int size)
 {
 	int		i;
 	char	bin[73];
@@ -34,7 +34,7 @@ int		ft_print_binary(t_printf *elem, long long  binary, int size)
 	return (0);
 }
 
-int		ft_print_ubinary(t_printf *elem, unsigned long long  binary, int size)
+int		ft_print_ubinary(t_printf *elem, unsigned long long binary, int size)
 {
 	int		i;
 	char	bin[73];
