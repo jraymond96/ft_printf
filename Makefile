@@ -6,7 +6,7 @@
 #    By: jraymond <jraymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 18:29:20 by jraymond          #+#    #+#              #
-#    Updated: 2018/02/14 22:22:33 by jraymond         ###   ########.fr        #
+#    Updated: 2018/05/01 11:53:09 by jraymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS = ft_memset.c \
 				ft_handle_overflow.c \
 				ft_param_char.c	\
 				ft_param_decimal.c \
-				ft_ilen.c \
+				ilen.c \
 				ft_handle_size.c \
 				ft_lltoa.c \
 				ft_ulltoa.c \

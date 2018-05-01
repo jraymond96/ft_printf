@@ -6,13 +6,13 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/02 11:44:03 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/02 18:14:00 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/05/01 11:49:24 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_ilen(intmax_t arg)
+int		ilen(intmax_t arg)
 {
 	int			i;
 	intmax_t	res;

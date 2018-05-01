@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/31 18:59:02 by jraymond          #+#    #+#             */
-/*   Updated: 2018/02/14 18:15:27 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/05/01 11:49:11 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_param_decimal(t_printf *elem, va_list ap)
 	if (elem->flags & ZERO && (elem->flags & MINUS || elem->flags & PRECI))
 		elem->flags ^= ZERO;
 	(elem->flags & SPACE && elem->flags & MORE) ? elem->flags ^= SPACE : 0;
-	nb_c_add_pw(&nbca, elem, ft_ilen(arg), numb);
+	nb_c_add_pw(&nbca, elem, ilen(arg), numb);
 	ft_handle_sign(elem, &nbca, numb);
 	if (arg == 0 && elem->flags & PRECI && elem->precision == 0)
 	{
