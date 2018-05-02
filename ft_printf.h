@@ -6,7 +6,7 @@
 /*   By: jraymond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:50:07 by jraymond          #+#    #+#             */
-/*   Updated: 2018/05/01 11:49:59 by jraymond         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:44:05 by jraymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef	struct	s_nbcaddpw
 */
 
 int				ft_printf(const char *format, ...);
+int				ft_dprintf(int fd, const char *format, ...);
 int				ft_read_format(const char *format, va_list ap, t_printf *elem);
 char			ft_char_is_type(char c);
 void			ft_argis_str(va_list ap, t_printf *elem);
