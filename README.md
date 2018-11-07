@@ -27,10 +27,10 @@ Power of wilcard are present.
 | 0 | underline |
 | # | bold |
 
-* %b or %`flags`b
+* %b or %`flags`b => display binary
 
+| FLAGS | LENGHT DISPLAY |
 | --- | --- |
-| FLAGS | LENGHT BITS |
 | hh | char |
 | h | short |
 | l | int |
