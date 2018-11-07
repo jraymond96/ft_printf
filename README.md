@@ -28,6 +28,8 @@ Power of wilcard are present.
 | # | bold |
 
 * %b or %`flags`b
+
+| --- | --- |
 | FLAGS | LENGHT BITS |
 | hh | char |
 | h | short |
