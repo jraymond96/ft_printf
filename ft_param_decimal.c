@@ -34,23 +34,21 @@ void	nb_c_add_pw(t_nbcaddpw *nbca, t_printf *elem, int intl, char *numb)
 void	ft_handle_sign(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 {
 	char	sp;
-	char	minus;
 	char	more;
 
 	sp = ' ';
-	minus = '-';
 	more = '+';
 	if (numb[0] == '-')
-		nbca->preci = (nbca->preci - 1) < 0 ? 0 : nbca->preci--;
+		nbca->preci = (nbca->preci - 1) < 0 ? 0 : (nbca->preci - 1);
 	if (elem->flags & SPACE && numb[0] != '-')
 	{
 		ft_handle_overflow(elem, &sp, 1, 1);
-		nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
+		nbca->width = (nbca->width - 1) < 0 ? 0 : (nbca->width - 1);
 	}
 	if (elem->flags & MORE && elem->flags & ZERO && numb[0] != '-')
 	{
 		ft_handle_overflow(elem, &more, 1, 1);
-		nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
+		nbca->width = (nbca->width - 1) < 0 ? 0 : (nbca->width - 1);
 		elem->flags ^= MORE;
 	}
 }

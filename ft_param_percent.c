@@ -45,10 +45,8 @@ int		ft_handle_notype(t_printf *elem, const char *format)
 {
 	int		nb;
 	char	sp;
-	char	zero;
 
 	sp = ' ';
-	zero = '0';
 	if (elem->no_type == 0 && !elem->type)
 		return (0);
 	if (format[elem->no_type] == '%')

@@ -66,14 +66,14 @@ void	ft_handle_sharp(t_nbcaddpw *nbca, t_printf *elem, unsigned long long nb)
 		if (nbca->preci > 0 && !(nbca->width))
 			nbca->preci -= 1;
 		else
-			nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
+			nbca->width = (nbca->width - 1) < 0 ? 0 : (nbca->width - 1);
 	}
 	else if (elem->flags & SHARP && nb != 0)
 	{
 		if (nbca->preci > 0 && !(nbca->width))
 			nbca->preci -= 1;
 		else
-			nbca->width = (nbca->width - 1) < 0 ? 0 : nbca->width--;
+			nbca->width = (nbca->width - 1) < 0 ? 0 : (nbca->width - 1);
 	}
 }
 

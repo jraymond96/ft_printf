@@ -16,10 +16,8 @@ void	ft_neg_no_minus(t_printf *elem, t_nbcaddpw *nbca, char *numb)
 {
 	char	sp;
 	char	zero;
-	char	more;
 
 	sp = ' ';
-	more = '+';
 	zero = '0';
 	if (!(elem->flags & ZERO))
 	{
