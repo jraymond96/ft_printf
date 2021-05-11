@@ -21,6 +21,9 @@
 # include <string.h>
 # include <stdlib.h>
 
+// unitmax_t ...
+# include <stdint.h>
+
 # define BUFF_SIZE 128
 
 /*
