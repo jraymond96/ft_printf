@@ -22,7 +22,7 @@
 # include <stdlib.h>
 
 // unitmax_t ...
-# include <stdint.h>
+# include <inttypes.h>
 
 # define BUFF_SIZE 128
 
@@ -91,7 +91,6 @@ typedef	struct	s_nbcaddpw
 */
 
 int				ft_printf(const char *format, ...);
-int				ft_dprintf(int fd, const char *format, ...);
 int				ft_dprintf(int fd, const char *format, ...);
 int				ft_read_format(const char *format, va_list ap, t_printf *elem);
 char			ft_char_is_type(char c);
